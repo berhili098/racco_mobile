@@ -1,0 +1,231 @@
+Target dependency graph (54 targets)
+OneSignalNotificationServiceExtension in Runner, no dependencies
+BoringSSL-GRPC in Pods, no dependencies
+FMDB in Pods, no dependencies
+PromisesObjC in Pods, no dependencies
+GoogleUtilities in Pods, depends on:
+PromisesObjC in Pods (explicit)
+FirebaseCoreInternal in Pods, depends on:
+GoogleUtilities in Pods (explicit)
+FirebaseCore in Pods, depends on:
+FirebaseCoreInternal in Pods (explicit)
+GoogleUtilities in Pods (explicit)
+abseil in Pods, no dependencies
+Libuv-gRPC in Pods, no dependencies
+gRPC-Core in Pods, depends on:
+BoringSSL-GRPC in Pods (explicit)
+Libuv-gRPC in Pods (explicit)
+abseil in Pods (explicit)
+gRPC-C++-gRPCCertificates-Cpp in Pods, depends on:
+abseil in Pods (implicit dependency via options '-framework absl' in build setting 'OTHER_LDFLAGS')
+gRPC-Core in Pods (implicit dependency via options '-framework grpc' in build setting 'OTHER_LDFLAGS')
+gRPC-C++ in Pods, depends on:
+abseil in Pods (explicit)
+gRPC-C++-gRPCCertificates-Cpp in Pods (explicit)
+gRPC-Core in Pods (explicit)
+leveldb-library in Pods, no dependencies
+nanopb in Pods, no dependencies
+FirebaseFirestore in Pods, depends on:
+FirebaseCore in Pods (explicit)
+abseil in Pods (explicit)
+gRPC-C++ in Pods (explicit)
+leveldb-library in Pods (explicit)
+nanopb in Pods (explicit)
+FirebaseInstallations in Pods, depends on:
+FirebaseCore in Pods (explicit)
+GoogleUtilities in Pods (explicit)
+PromisesObjC in Pods (explicit)
+GoogleDataTransport in Pods, depends on:
+GoogleUtilities in Pods (explicit)
+PromisesObjC in Pods (explicit)
+nanopb in Pods (explicit)
+FirebaseMessaging in Pods, depends on:
+FirebaseCore in Pods (explicit)
+FirebaseInstallations in Pods (explicit)
+GoogleDataTransport in Pods (explicit)
+GoogleUtilities in Pods (explicit)
+nanopb in Pods (explicit)
+FirebaseAppCheckInterop in Pods, no dependencies
+FirebaseAuthInterop in Pods, no dependencies
+FirebaseCoreExtension in Pods, depends on:
+FirebaseCore in Pods (explicit)
+GTMSessionFetcher in Pods, no dependencies
+FirebaseStorage in Pods, depends on:
+FirebaseAppCheckInterop in Pods (explicit)
+FirebaseAuthInterop in Pods (explicit)
+FirebaseCore in Pods (explicit)
+FirebaseCoreExtension in Pods (explicit)
+GTMSessionFetcher in Pods (explicit)
+Firebase in Pods, depends on:
+FirebaseCore in Pods (explicit)
+FirebaseFirestore in Pods (explicit)
+FirebaseMessaging in Pods (explicit)
+FirebaseStorage in Pods (explicit)
+Flutter in Pods, no dependencies
+GoogleToolboxForMac in Pods, no dependencies
+GoogleUtilitiesComponents in Pods, depends on:
+GoogleUtilities in Pods (explicit)
+MLKitCommon in Pods, depends on:
+GoogleDataTransport in Pods (explicit)
+GoogleToolboxForMac in Pods (explicit)
+GoogleUtilities in Pods (explicit)
+GoogleUtilitiesComponents in Pods (explicit)
+GTMSessionFetcher in Pods (explicit)
+MLImage in Pods, no dependencies
+MLKitVision in Pods, depends on:
+GoogleToolboxForMac in Pods (explicit)
+GTMSessionFetcher in Pods (explicit)
+MLImage in Pods (explicit)
+MLKitCommon in Pods (explicit)
+MLKitBarcodeScanning in Pods, depends on:
+MLKitCommon in Pods (explicit)
+MLKitVision in Pods (explicit)
+GoogleMLKit in Pods, depends on:
+MLKitBarcodeScanning in Pods (explicit)
+MLKitCommon in Pods (explicit)
+OneSignalXCFramework in Pods, no dependencies
+ReachabilitySwift in Pods, no dependencies
+firebase_core in Pods, depends on:
+Firebase in Pods (explicit)
+Flutter in Pods (explicit)
+cloud_firestore in Pods, depends on:
+Firebase in Pods (explicit)
+Flutter in Pods (explicit)
+firebase_core in Pods (explicit)
+nanopb in Pods (explicit)
+connectivity_plus in Pods, depends on:
+Flutter in Pods (explicit)
+ReachabilitySwift in Pods (explicit)
+device_info_plus in Pods, depends on:
+Flutter in Pods (explicit)
+firebase_messaging in Pods, depends on:
+Firebase in Pods (explicit)
+Flutter in Pods (explicit)
+firebase_core in Pods (explicit)
+firebase_storage in Pods, depends on:
+Firebase in Pods (explicit)
+Flutter in Pods (explicit)
+firebase_core in Pods (explicit)
+geocoding_ios in Pods, depends on:
+Flutter in Pods (explicit)
+geolocator_apple in Pods, depends on:
+Flutter in Pods (explicit)
+image_picker_ios in Pods, depends on:
+Flutter in Pods (explicit)
+location in Pods, depends on:
+Flutter in Pods (explicit)
+mobile_scanner in Pods, depends on:
+Flutter in Pods (explicit)
+GoogleMLKit in Pods (explicit)
+onesignal_flutter in Pods, depends on:
+Flutter in Pods (explicit)
+OneSignalXCFramework in Pods (explicit)
+package_info_plus in Pods, depends on:
+Flutter in Pods (explicit)
+path_provider_foundation in Pods, depends on:
+Flutter in Pods (explicit)
+permission_handler_apple in Pods, depends on:
+Flutter in Pods (explicit)
+shared_preferences_foundation in Pods, depends on:
+Flutter in Pods (explicit)
+sqflite in Pods, depends on:
+FMDB in Pods (explicit)
+Flutter in Pods (explicit)
+url_launcher_ios in Pods, depends on:
+Flutter in Pods (explicit)
+Pods-Runner in Pods, depends on:
+BoringSSL-GRPC in Pods (explicit)
+FMDB in Pods (explicit)
+Firebase in Pods (explicit)
+FirebaseAppCheckInterop in Pods (explicit)
+FirebaseAuthInterop in Pods (explicit)
+FirebaseCore in Pods (explicit)
+FirebaseCoreExtension in Pods (explicit)
+FirebaseCoreInternal in Pods (explicit)
+FirebaseFirestore in Pods (explicit)
+FirebaseInstallations in Pods (explicit)
+FirebaseMessaging in Pods (explicit)
+FirebaseStorage in Pods (explicit)
+Flutter in Pods (explicit)
+GTMSessionFetcher in Pods (explicit)
+GoogleDataTransport in Pods (explicit)
+GoogleMLKit in Pods (explicit)
+GoogleToolboxForMac in Pods (explicit)
+GoogleUtilities in Pods (explicit)
+GoogleUtilitiesComponents in Pods (explicit)
+Libuv-gRPC in Pods (explicit)
+MLImage in Pods (explicit)
+MLKitBarcodeScanning in Pods (explicit)
+MLKitCommon in Pods (explicit)
+MLKitVision in Pods (explicit)
+OneSignalXCFramework in Pods (explicit)
+PromisesObjC in Pods (explicit)
+ReachabilitySwift in Pods (explicit)
+abseil in Pods (explicit)
+cloud_firestore in Pods (explicit)
+connectivity_plus in Pods (explicit)
+device_info_plus in Pods (explicit)
+firebase_core in Pods (explicit)
+firebase_messaging in Pods (explicit)
+firebase_storage in Pods (explicit)
+gRPC-C++ in Pods (explicit)
+gRPC-Core in Pods (explicit)
+geocoding_ios in Pods (explicit)
+geolocator_apple in Pods (explicit)
+image_picker_ios in Pods (explicit)
+leveldb-library in Pods (explicit)
+location in Pods (explicit)
+mobile_scanner in Pods (explicit)
+nanopb in Pods (explicit)
+onesignal_flutter in Pods (explicit)
+package_info_plus in Pods (explicit)
+path_provider_foundation in Pods (explicit)
+permission_handler_apple in Pods (explicit)
+shared_preferences_foundation in Pods (explicit)
+sqflite in Pods (explicit)
+url_launcher_ios in Pods (explicit)
+Runner in Runner, depends on:
+OneSignalNotificationServiceExtension in Runner (explicit)
+Pods-Runner in Pods (implicit dependency via file 'Pods_Runner.framework' in build phase 'Link Binary')
+PromisesObjC in Pods (implicit dependency via options '-framework FBLPromises' in build setting 'OTHER_LDFLAGS')
+FMDB in Pods (implicit dependency via options '-framework FMDB' in build setting 'OTHER_LDFLAGS')
+FirebaseAppCheckInterop in Pods (implicit dependency via options '-framework FirebaseAppCheckInterop' in build setting 'OTHER_LDFLAGS')
+FirebaseAuthInterop in Pods (implicit dependency via options '-framework FirebaseAuthInterop' in build setting 'OTHER_LDFLAGS')
+FirebaseCore in Pods (implicit dependency via options '-framework FirebaseCore' in build setting 'OTHER_LDFLAGS')
+FirebaseCoreExtension in Pods (implicit dependency via options '-framework FirebaseCoreExtension' in build setting 'OTHER_LDFLAGS')
+FirebaseCoreInternal in Pods (implicit dependency via options '-framework FirebaseCoreInternal' in build setting 'OTHER_LDFLAGS')
+FirebaseFirestore in Pods (implicit dependency via options '-framework FirebaseFirestore' in build setting 'OTHER_LDFLAGS')
+FirebaseInstallations in Pods (implicit dependency via options '-framework FirebaseInstallations' in build setting 'OTHER_LDFLAGS')
+FirebaseMessaging in Pods (implicit dependency via options '-framework FirebaseMessaging' in build setting 'OTHER_LDFLAGS')
+FirebaseStorage in Pods (implicit dependency via options '-framework FirebaseStorage' in build setting 'OTHER_LDFLAGS')
+GTMSessionFetcher in Pods (implicit dependency via options '-framework GTMSessionFetcher' in build setting 'OTHER_LDFLAGS')
+GoogleDataTransport in Pods (implicit dependency via options '-framework GoogleDataTransport' in build setting 'OTHER_LDFLAGS')
+GoogleToolboxForMac in Pods (implicit dependency via options '-framework GoogleToolboxForMac' in build setting 'OTHER_LDFLAGS')
+GoogleUtilities in Pods (implicit dependency via options '-framework GoogleUtilities' in build setting 'OTHER_LDFLAGS')
+GoogleUtilitiesComponents in Pods (implicit dependency via options '-framework GoogleUtilitiesComponents' in build setting 'OTHER_LDFLAGS')
+ReachabilitySwift in Pods (implicit dependency via options '-framework Reachability' in build setting 'OTHER_LDFLAGS')
+abseil in Pods (implicit dependency via options '-framework absl' in build setting 'OTHER_LDFLAGS')
+cloud_firestore in Pods (implicit dependency via options '-framework cloud_firestore' in build setting 'OTHER_LDFLAGS')
+connectivity_plus in Pods (implicit dependency via options '-framework connectivity_plus' in build setting 'OTHER_LDFLAGS')
+device_info_plus in Pods (implicit dependency via options '-framework device_info_plus' in build setting 'OTHER_LDFLAGS')
+firebase_core in Pods (implicit dependency via options '-framework firebase_core' in build setting 'OTHER_LDFLAGS')
+firebase_messaging in Pods (implicit dependency via options '-framework firebase_messaging' in build setting 'OTHER_LDFLAGS')
+firebase_storage in Pods (implicit dependency via options '-framework firebase_storage' in build setting 'OTHER_LDFLAGS')
+geocoding_ios in Pods (implicit dependency via options '-framework geocoding_ios' in build setting 'OTHER_LDFLAGS')
+geolocator_apple in Pods (implicit dependency via options '-framework geolocator_apple' in build setting 'OTHER_LDFLAGS')
+gRPC-Core in Pods (implicit dependency via options '-framework grpc' in build setting 'OTHER_LDFLAGS')
+gRPC-C++ in Pods (implicit dependency via options '-framework grpcpp' in build setting 'OTHER_LDFLAGS')
+image_picker_ios in Pods (implicit dependency via options '-framework image_picker_ios' in build setting 'OTHER_LDFLAGS')
+leveldb-library in Pods (implicit dependency via options '-framework leveldb' in build setting 'OTHER_LDFLAGS')
+location in Pods (implicit dependency via options '-framework location' in build setting 'OTHER_LDFLAGS')
+mobile_scanner in Pods (implicit dependency via options '-framework mobile_scanner' in build setting 'OTHER_LDFLAGS')
+nanopb in Pods (implicit dependency via options '-framework nanopb' in build setting 'OTHER_LDFLAGS')
+onesignal_flutter in Pods (implicit dependency via options '-framework onesignal_flutter' in build setting 'OTHER_LDFLAGS')
+BoringSSL-GRPC in Pods (implicit dependency via options '-framework openssl_grpc' in build setting 'OTHER_LDFLAGS')
+package_info_plus in Pods (implicit dependency via options '-framework package_info_plus' in build setting 'OTHER_LDFLAGS')
+path_provider_foundation in Pods (implicit dependency via options '-framework path_provider_foundation' in build setting 'OTHER_LDFLAGS')
+permission_handler_apple in Pods (implicit dependency via options '-framework permission_handler_apple' in build setting 'OTHER_LDFLAGS')
+shared_preferences_foundation in Pods (implicit dependency via options '-framework shared_preferences_foundation' in build setting 'OTHER_LDFLAGS')
+sqflite in Pods (implicit dependency via options '-framework sqflite' in build setting 'OTHER_LDFLAGS')
+url_launcher_ios in Pods (implicit dependency via options '-framework url_launcher_ios' in build setting 'OTHER_LDFLAGS')
+Libuv-gRPC in Pods (implicit dependency via options '-framework uv' in build setting 'OTHER_LDFLAGS')

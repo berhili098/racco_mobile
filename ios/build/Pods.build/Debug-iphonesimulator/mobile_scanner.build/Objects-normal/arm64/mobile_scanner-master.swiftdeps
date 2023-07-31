@@ -1,0 +1,11 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "8a788b9b83f3a910658c2732b358b5cb2139c917cd3babb89ee28e4b7661393b"
+build_start_time: [1684770521, 705319881]
+build_end_time: [1684770541, 450533866]
+inputs:
+  "/Users/mac/flutter/.pub-cache/hosted/pub.dartlang.org/mobile_scanner-3.2.0/ios/Classes/BarcodeHandler.swift": [1680862707, 659143447]
+  "/Users/mac/flutter/.pub-cache/hosted/pub.dartlang.org/mobile_scanner-3.2.0/ios/Classes/DetectionSpeed.swift": [1680862707, 658033370]
+  "/Users/mac/flutter/.pub-cache/hosted/pub.dartlang.org/mobile_scanner-3.2.0/ios/Classes/MobileScanner.swift": [1680862707, 658248901]
+  "/Users/mac/flutter/.pub-cache/hosted/pub.dartlang.org/mobile_scanner-3.2.0/ios/Classes/MobileScannerError.swift": [1680862707, 658951759]
+  "/Users/mac/flutter/.pub-cache/hosted/pub.dartlang.org/mobile_scanner-3.2.0/ios/Classes/MobileScannerUtilities.swift": [1680862707, 658725261]
+  "/Users/mac/flutter/.pub-cache/hosted/pub.dartlang.org/mobile_scanner-3.2.0/ios/Classes/SwiftMobileScannerPlugin.swift": [1680862707, 659338235]

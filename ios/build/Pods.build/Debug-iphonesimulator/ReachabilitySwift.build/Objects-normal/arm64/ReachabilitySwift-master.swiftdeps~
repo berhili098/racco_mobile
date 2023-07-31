@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "444d36bfc90993252a1383c1db084fc9107cc40657491f2351957538253d3c70"
+build_start_time: [1684770516, 521191120]
+build_end_time: [1684770516, 726666927]
+inputs:
+  "/Users/mac/Desktop/tracking_user/ios/Pods/ReachabilitySwift/Sources/Reachability.swift": !private [1684448851, 914091587]

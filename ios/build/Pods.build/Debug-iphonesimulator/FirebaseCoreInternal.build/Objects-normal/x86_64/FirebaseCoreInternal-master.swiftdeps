@@ -1,0 +1,24 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "6b8eeb9a490d68e2fc54143062ad106c5409b321b9878f793d0b8ceeb0e7a1ab"
+build_start_time: [1684770526, 260460853]
+build_end_time: [1684770541, 457170963]
+inputs:
+  "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Heartbeat.swift": [1684448850, 55370330]
+  ? "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatController.swift"
+  : [1684448850, 56701898]
+  ? "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatStorage.swift"
+  : [1684448850, 57328701]
+  ? "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsBundle.swift"
+  : [1684448850, 57608127]
+  ? "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsPayload.swift"
+  : [1684448850, 58626890]
+  "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/RingBuffer.swift": [1684448850, 55742740]
+  "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Storage.swift": [1684448850, 54774761]
+  ? "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/StorageFactory.swift"
+  : [1684448850, 59120655]
+  ? "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/WeakContainer.swift"
+  : [1684448850, 57986021]
+  ? "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatController.swift"
+  : [1684448850, 56239604]
+  ? "/Users/mac/Desktop/tracking_user/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatsPayload.swift"
+  : [1684448850, 56935548]

@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "379d7ee93dca9ef5f7035733e5b5e8c0e017df8e8251572325d3e177e09d7e0e"
+build_start_time: [1684770546, 649955034]
+build_end_time: [1684770546, 675118923]
+inputs:
+  "/Users/mac/Desktop/tracking_user/ios/Runner/AppDelegate.swift": !private [1648764938, 160695791]
