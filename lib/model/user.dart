@@ -57,7 +57,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['uuid'] = uuid;
     data['first_name'] = firstName;
@@ -71,8 +71,8 @@ class User {
     data['status'] = status;
     data['counter'] = counter;
 
-    if (this.technicien != null) {
-      data['technicien'] = this.technicien!.toJson();
+    if (technicien != null) {
+      data['technicien'] = technicien!.toJson();
     }
     // data['Counter'] = counter;
     // data['created_at'] = createdAt;

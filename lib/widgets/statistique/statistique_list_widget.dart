@@ -1,11 +1,10 @@
-import 'dart:ffi' as fi;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:tracking_user/pages/clients_sav/clients_sav_page.dart';
 import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/client_provider.dart';
@@ -69,8 +68,8 @@ class StatistiqueListWidget extends StatelessWidget {
                           IconButton(
                             padding: EdgeInsets.zero,
                             onPressed: () => Scaffold.of(context).openDrawer(),
-                            icon:
-                                SvgPicture.asset('assets/icons/home/Sort-1.svg'),
+                            icon: SvgPicture.asset(
+                                'assets/icons/home/Sort-1.svg'),
                           ),
                           InkWell(
                             onTap: () => context.push(routeNotificationPage),
@@ -92,7 +91,8 @@ class StatistiqueListWidget extends StatelessWidget {
                                           userProvider.notificationsList.length
                                               .toString(),
                                           style: const TextStyle(
-                                              color: Colors.white, fontSize: 11),
+                                              color: Colors.white,
+                                              fontSize: 11),
                                         ))
                               ],
                             ),
@@ -130,10 +130,11 @@ class StatistiqueListWidget extends StatelessWidget {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    affectationProvider.getAffectationTechnicien(
-                                        context,
-                                        userProvider.userData!.technicienId
-                                            .toString());
+                                    affectationProvider
+                                        .getAffectationTechnicien(
+                                            context,
+                                            userProvider.userData!.technicienId
+                                                .toString());
 
                                     affectationProvider.getAffectationPlanifier(
                                         context,
@@ -208,10 +209,11 @@ class StatistiqueListWidget extends StatelessWidget {
                                       affectationProvider
                                           .getAffectationTechnicien(
                                               context,
-                                              userProvider.userData!.technicienId
+                                              userProvider
+                                                  .userData!.technicienId
                                                   .toString())
-                                          .whenComplete(
-                                              () => clientProvider.stopLoading());
+                                          .whenComplete(() =>
+                                              clientProvider.stopLoading());
                                     });
                                   } else {
                                     SncakBarWidgdet.snackBarSucces(context,
@@ -221,17 +223,37 @@ class StatistiqueListWidget extends StatelessWidget {
                               }
                             },
                           ),
-                          const SizedBox(height: 20),
+                          20.verticalSpace,
                           CardStatistiqueWidget(
                             icon: const Icon(Icons.abc),
                             nbItem: affectationProvider.affectations.length,
                             percent: 1.0,
-                            title: "Vos clients",
+                            title: "Vos clients ",
                             useProgress: true,
                             onTap: () {
                               validationProvider.initValue();
                               declarationProvider.initValue();
                               context.push(routeAffectations);
+                            },
+                          ),
+                          20.verticalSpace,
+                          CardStatistiqueWidget(
+                            icon: const Icon(Icons.abc),
+                            nbItem: affectationProvider.affectations.length,
+                            percent: 1.0,
+                            title: "Vos clients Sav",
+                            isSav: true,
+                            useProgress: true,
+                            onTap: () {
+                              validationProvider.initValue();
+                              declarationProvider.initValue();
+                              // context.push(routeAffectations);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ClientSavPage()),
+                              );
                             },
                           ),
                           const SizedBox(height: 20),
@@ -243,7 +265,8 @@ class StatistiqueListWidget extends StatelessWidget {
                             percent: 1.0,
                             title: "Clients planifiés",
                             useProgress: false,
-                            onTap: () => context.push(routeFormTechniqueBlocage),
+                            onTap: () =>
+                                context.push(routeFormTechniqueBlocage),
                           ),
                           HomerdWidget(
                             title: "Demandes PPI",

@@ -34,7 +34,6 @@ class DropdownWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         CupertinoButton(
-                          child: Text('Cancel'),
                           onPressed: () {
                             Navigator.pop(context);
                           },
@@ -42,9 +41,9 @@ class DropdownWidget extends StatelessWidget {
                             horizontal: 16.0,
                             vertical: 5.0,
                           ),
+                          child: const Text('Cancel'),
                         ),
                         CupertinoButton(
-                          child: Text('Confirm'),
                           onPressed: () {
                             blocageProvider.getValueBlocageTechnicien(
                                 blocageProvider.checkValueBlocageClient);
@@ -54,6 +53,7 @@ class DropdownWidget extends StatelessWidget {
                             horizontal: 16.0,
                             vertical: 5.0,
                           ),
+                          child: const Text('Confirm'),
                         )
                       ],
                     ),

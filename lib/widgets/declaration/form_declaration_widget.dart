@@ -1,10 +1,8 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:tracking_user/model/affectation.dart';
 import 'package:tracking_user/routes.dart';
@@ -14,7 +12,6 @@ import 'package:tracking_user/widgets/declaration/scan_gpon/fieald_declaration_a
 import 'package:tracking_user/widgets/declaration/field_declaration_widget.dart';
 import 'package:tracking_user/widgets/declaration/image_picker_widget.dart';
 import 'package:tracking_user/widgets/declaration/scan_mac/fieald_declaration_auto_mac_complet_widget.dart';
-import 'package:tracking_user/widgets/shared/field_description_widget.dart';
 import 'package:tracking_user/widgets/validation/option_image_widget.dart';
 
 class FormDeclationWidget extends StatelessWidget {

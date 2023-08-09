@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tracking_user/model/affectation.dart';
-import 'package:tracking_user/pages/affectations/affectations_list_page.dart';
 import 'package:tracking_user/pages/auth/login/login_page.dart';
 import 'package:tracking_user/pages/blocage/blocage_page.dart';
 import 'package:tracking_user/pages/blocage/type_blocage_page.dart';
@@ -24,14 +23,10 @@ import 'package:tracking_user/pages/validation/option_validation_page.dart';
 import 'package:tracking_user/pages/validation/validation_page.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:tracking_user/storage/shared_preferences.dart';
-import 'package:tracking_user/widgets/blocage/forms_blocage_client_widget.dart';
-import 'package:tracking_user/widgets/blocage/type_blocage_widget.dart';
 import 'package:tracking_user/widgets/declaration/option_list_roteur_widget.dart';
 import 'package:tracking_user/widgets/validation/option_cin_widget.dart';
-import 'package:tracking_user/widgets/declaration/option_list_widget.dart';
 import 'package:tracking_user/widgets/declaration/option_type_passage_widget.dart';
 import 'package:tracking_user/widgets/declaration/scan_gpon/scan_bar_code_widget.dart';
-import 'package:tracking_user/widgets/validation/blocage_validation/type_blocage_validation_widget.dart';
 
 const String routeInitial = 'home';
 
@@ -179,7 +174,7 @@ final router = GoRouter(
       path: '/permission',
 
       builder: (BuildContext context, GoRouterState state) {
-        return PermissionPage();
+        return const PermissionPage();
       },
 
       // pageBuilder: (context, state) => MaterialPage(

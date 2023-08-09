@@ -2,13 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tracking_user/model/affectation.dart';
-import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/deblocage_provider.dart';
-import 'package:tracking_user/services/providers/declaration_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:tracking_user/widgets/notification/snack_bar_widget.dart';
 

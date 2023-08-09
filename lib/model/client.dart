@@ -9,7 +9,7 @@ class ClientsData {
     if (json['Clients'] != null) {
       clients = <Clients>[];
       json['Clients'].forEach((v) {
-        clients!.add(new Clients.fromJson(v));
+        clients!.add(Clients.fromJson(v));
       });
     }
   }

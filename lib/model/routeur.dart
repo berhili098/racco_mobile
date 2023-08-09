@@ -4,8 +4,8 @@ class Routeur {
   String? snGpon;
   String? snMac;
   int? status;
-  Null? clientId;
-  Null? technicienId;
+  int? clientId;
+  int? technicienId;
   DateTime? createdAt;
   DateTime? updatedAt;
 

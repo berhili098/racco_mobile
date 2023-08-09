@@ -60,10 +60,9 @@ void showCupertinoDatePicker(
   // Default to right now.
 
   if (!useText) {
-    cancelText = Icon(CupertinoIcons.clear_circled);
+    cancelText = const Icon(CupertinoIcons.clear_circled);
   } else {
-    if (cancelText == null)
-      cancelText = Text(
+    cancelText ??= Text(
         'Cancel',
         style: CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
               fontWeight: FontWeight.w600,
@@ -103,7 +102,7 @@ void showCupertinoDatePicker(
     onPressed: () {
 
 
-      print("zakaria");
+      
            action!();}
   );
 

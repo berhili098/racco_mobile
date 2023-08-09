@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
-import 'package:provider/provider.dart';
-import 'package:tracking_user/services/providers/blocage_provider.dart';
 import 'package:tracking_user/widgets/affectations/icon_botton_widget.dart';
 
 class OptionImage extends StatelessWidget {

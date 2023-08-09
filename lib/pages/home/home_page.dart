@@ -61,8 +61,8 @@ class _HomePageState extends State<HomePage> {
                   context, userProvider.userData!.id.toString())
             });
 
-        print("subtitle :${event.notification.subtitle}");
-        print("title : ${event.notification.title}");
+        
+        
 
         if (event.notification.subtitle == "test") {}
 

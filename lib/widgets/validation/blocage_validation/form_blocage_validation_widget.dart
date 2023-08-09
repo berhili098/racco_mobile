@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
-import 'package:tracking_user/model/blocage_image.dart';
 import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/blocage_provider.dart';
@@ -16,8 +15,6 @@ import 'package:tracking_user/widgets/blocage/image/image_picker_widget.dart';
 import 'package:tracking_user/widgets/shared/field_description_widget.dart';
 import 'package:tracking_user/widgets/login/field_login_widget.dart';
 import 'package:tracking_user/widgets/notification/snack_bar_widget.dart';
-import 'package:tracking_user/widgets/validation/image_picker_widget.dart';
-import 'package:tracking_user/widgets/validation/option_image_widget.dart';
 
 class FormsBlocageValidationWidget extends StatelessWidget {
   final String idAffectation;
@@ -198,9 +195,9 @@ class FormsBlocageValidationWidget extends StatelessWidget {
                                               .retardDactivation)
                           ?
                           
-                          ImagePickerBlocageWidget(imageTitle: 'OGIF', titel: 'OGIF',)
+                          const ImagePickerBlocageWidget(imageTitle: 'OGIF', titel: 'OGIF',)
                           
-                         :SizedBox(),
+                         :const SizedBox(),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: FieldDescriptionWidget(

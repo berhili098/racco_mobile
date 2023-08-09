@@ -1,22 +1,14 @@
-import 'dart:developer';
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 
-import 'package:location/location.dart' as loc;
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:image/image.dart' as IMG;
-import 'package:geolocator_platform_interface/src/enums/location_accuracy.dart'
-    as te;
 import 'package:location/location.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 // ignore: depend_on_referenced_packages
-import 'package:latlong2/latlong.dart';
 import 'package:tracking_user/model/client.dart' as client;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:tracking_user/services/client_service.dart';
@@ -55,7 +47,7 @@ class ClientProvider extends ChangeNotifier {
     loadingTest = true;
     notifyListeners();
 
-    return Future.delayed(Duration(seconds: 2), () {
+    return Future.delayed(const Duration(seconds: 2), () {
       loadingTest = false;
       SncakBarWidgdet.snackBarSucces(context, "avec succes");
       notifyListeners();
@@ -74,7 +66,7 @@ class ClientProvider extends ChangeNotifier {
     return increaseConteurUser();
   }
 
-  Location location = new Location();
+  Location location = Location();
   late bool _serviceEnabled;
   PermissionStatus? _permissionGranted;
   late LocationData locationData;

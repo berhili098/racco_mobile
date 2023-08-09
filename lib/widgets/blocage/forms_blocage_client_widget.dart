@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -99,7 +98,7 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   BlocageClient.adresseErroneNonDeploye.name ||
                               blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.nonEligible.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: "Choisir une image d'Elecr",
                               imageTitle: "Image d'Elecr")
                           : const SizedBox(),
@@ -112,13 +111,13 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   BlocageClient.blocageFacadeCoteMagasin.name ||
                               blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.cabelTransportSature.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une image de blocage',
                               imageTitle: "Image de blocage")
                           : const SizedBox(),
                       blocageProvider.checkValueBlocageClient ==
                               BlocageClient.cabelTransportSature.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une image de transport',
                               imageTitle: "Image de transport")
                           : const SizedBox(),
@@ -132,13 +131,13 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   BlocageClient.indisponible.name ||
                               blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.injoignableSMS.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: "Importer une screen d'appel",
                               imageTitle: "screen d'appel")
                           : const SizedBox(),
                       blocageProvider.checkValueBlocageClient ==
                               BlocageClient.injoignableSMS.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: "Importer une screen de SMS",
                               imageTitle: "Screen de SMS")
                           : const SizedBox(),
@@ -158,7 +157,7 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   BlocageClient.adresseErroneDeploye.name ||
                               blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.adresseErroneNonDeploye.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une image de facade',
                               imageTitle: "Image de facade")
                           : const SizedBox(),
@@ -171,7 +170,7 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   BlocageClient.blocageFacadeCoteVilla.name ||
                               blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.blocageFacadeCoteMagasin.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une image de schéma',
                               imageTitle: "Image de schéma")
                           : const SizedBox(),
@@ -185,7 +184,7 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   BlocageClient.cabelTransportSature.name ||
                               blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.problemeVerticalite.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une image de blocage',
                               imageTitle: "Image de blocage")
                           : const SizedBox(),
@@ -198,7 +197,7 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   BlocageClient.pasSignal.name ||
                               blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.splitterSature.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une photo de spliter',
                               imageTitle: "Photo de spliter")
                           : const SizedBox(),
@@ -208,7 +207,7 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   BlocageClient.pasSignal.name ||
                               blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.splitterSature.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une photo de chambre',
                               imageTitle: "Photo de chambre")
                           : const SizedBox(),
@@ -222,13 +221,13 @@ class FormsBlocageClientWidget extends StatelessWidget {
                           : const SizedBox(),
                       blocageProvider.checkValueBlocageTechnicien ==
                               BlocageClient.pasSignal.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une photo signal',
                               imageTitle: "Photo signal")
                           : const SizedBox(),
                       blocageProvider.checkValueBlocageTechnicien ==
                               BlocageClient.nonEligible.name
-                          ? ImagePickerBlocageWidget(
+                          ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une photo electr',
                               imageTitle: "Photo electr")
                           : const SizedBox(),
@@ -246,7 +245,7 @@ class FormsBlocageClientWidget extends StatelessWidget {
                           readOnly: false,
                           controller: blocageProvider.adresseLinkController,
                           onChanged: (value) {
-                            // print(blocageProvider.isLink(value));
+                            // 
                           },
                         ),
                       ),

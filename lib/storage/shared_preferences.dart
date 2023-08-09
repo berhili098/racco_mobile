@@ -32,7 +32,7 @@ Future increaseConteurUser() async {
     cnt = cnt! + 1;
     await prefs.setInt('conteur', cnt);
 
-  //   print(' conteur tec  increase $cnt ');
+  //   
   // }
 }
 
@@ -51,14 +51,14 @@ log('createConteurUser $value');
 
 //   await prefs.setInt('conteur', 3);
 
-//   print(prefs.getInt('conteur'));
+//   
 // }
 
 Future<int> getCounterUser() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   int cnt = prefs.getInt('conteur')!;
 
-  print(' get conteur tec  $cnt ');
+  
   return cnt;
 }
 

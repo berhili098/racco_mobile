@@ -45,7 +45,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
               ],
               // leading: Icon(Icons.home ,color: Colors.black,size: 30,),
             ),
-            Container(
+            const SizedBox(
               height: 50,
               child: Center(child: Text("zakaria")),
             ),

@@ -14,10 +14,10 @@ class TicketOrange {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nom_ticket'] = this.nomTicket;
-    data['lat'] = this.lat;
-    data['lang'] = this.lang;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nom_ticket'] = nomTicket;
+    data['lat'] = lat;
+    data['lang'] = lang;
     // data['created_at'] = this.createdAt;
     return data;
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,14 +8,13 @@ import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 
 import 'package:tracking_user/widgets/blocage/affectation_blocage_list_widget.dart';
-import 'package:tracking_user/widgets/declaration/affectation_declarer_widget.dart';
 import 'package:tracking_user/widgets/login/field_login_widget.dart';
 import 'package:tracking_user/widgets/planification/affectation_planifier.dart';
 import 'package:tracking_user/widgets/validation/affectation_valider_widget.dart';
 import 'package:tracking_user/widgets/validation/blocage_validation/list_blocage_befor_validation_widget.dart';
 
 class HistoriqueWidget extends StatelessWidget {
-  const HistoriqueWidget({Key? key});
+  const HistoriqueWidget({super.key});
 
 // [SliverAppBar]s are typically used in [CustomScrollView.slivers], which in
   @override
@@ -137,7 +135,7 @@ class HistoriqueWidget extends StatelessWidget {
                     color: Colors.white),
                 onTap: (value) {
                   affectationProvider.getIndexTab(value);
-                  //         print(value);
+                  //         
                 },
                 tabs: [
                   // Tab(

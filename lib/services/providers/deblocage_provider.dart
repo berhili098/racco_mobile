@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,16 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:location/location.dart' as loc;
 
-import 'package:image/image.dart' as IMG;
-import 'package:geolocator_platform_interface/src/enums/location_accuracy.dart'
-    as te;
 import 'package:tracking_user/model/validation.dart';
-import 'package:tracking_user/routes.dart';
-import 'package:tracking_user/services/affectations_services.dart';
 import 'package:tracking_user/services/deblocage_service.dart';
-import 'package:tracking_user/services/validation_service.dart';
 import 'package:tracking_user/widgets/notification/snack_bar_widget.dart';
 
 class DeblocageProvider extends ChangeNotifier {

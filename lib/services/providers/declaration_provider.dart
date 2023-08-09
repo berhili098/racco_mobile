@@ -7,17 +7,12 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:location/location.dart' as loc;
 
-import 'package:image/image.dart' as IMG;
-import 'package:geolocator_platform_interface/src/enums/location_accuracy.dart'
-    as te;
 import 'package:tracking_user/model/declaration.dart';
 import 'package:tracking_user/model/routeur.dart';
 import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/affectations_services.dart';
 import 'package:tracking_user/services/declaration_services.dart';
-import 'package:tracking_user/storage/shared_preferences.dart';
 import 'package:tracking_user/widgets/notification/snack_bar_widget.dart';
 
 class DeclarationProvider extends ChangeNotifier {
@@ -361,7 +356,7 @@ class DeclarationProvider extends ChangeNotifier {
   Future<String> addRouteur(Object data) async {
     loading = false;
 
-    print(response.body);
+    
     try {
       loading = true;
       notifyListeners();
@@ -404,7 +399,7 @@ class DeclarationProvider extends ChangeNotifier {
     loading = true;
     notifyListeners();
     response = await affectationsApi.getRouteurs();
-    print(response.body);
+    
     switch (response.statusCode) {
       case 200:
         routeurList.clear();

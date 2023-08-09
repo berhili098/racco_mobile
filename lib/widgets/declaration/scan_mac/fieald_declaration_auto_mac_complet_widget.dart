@@ -2,14 +2,9 @@ import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
-import 'package:image/image.dart';
 import 'package:provider/provider.dart';
-import 'package:tracking_user/routes.dart';
-import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/declaration_provider.dart';
-import 'package:tracking_user/widgets/declaration/scan_gpon/scan_bar_code_widget.dart';
 import 'package:tracking_user/widgets/declaration/scan_mac/scan_bar_code_mac_widget.dart';
 
 class FiealdDeclarationAutoCompletMacWidget extends StatefulWidget {

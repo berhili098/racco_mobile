@@ -1,19 +1,14 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image/image.dart' as IMG;
 import 'package:image_picker/image_picker.dart';
 import 'package:tracking_user/model/blocage.dart';
 import 'package:tracking_user/model/blocage_image.dart';
 import 'package:http/http.dart';
-import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/blocage_service.dart';
-import 'package:location/location.dart' as loc;
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
 import 'package:location/location.dart';
@@ -354,7 +349,7 @@ class BlocageProvider extends ChangeNotifier {
     notifyListeners();
 
     // try {
-    print(affectationId);
+    
     response = await blocageApi.declarationBlocage(
         affectationId,
         cause,
@@ -435,7 +430,7 @@ class BlocageProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    print(response.body);
+    
 
     switch (response.statusCode) {
       case 200:

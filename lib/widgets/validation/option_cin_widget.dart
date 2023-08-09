@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:tracking_user/services/providers/declaration_provider.dart';
 import 'package:tracking_user/services/providers/validation_provider.dart';
 import 'package:tracking_user/widgets/appBar/appbar_widget.dart';
 import 'package:tracking_user/widgets/blocage/button_send_widget.dart';

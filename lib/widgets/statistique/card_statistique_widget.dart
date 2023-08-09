@@ -1,17 +1,13 @@
-import 'dart:ui';
-
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconly/iconly.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:tracking_user/services/providers/affectation_provider.dart';
-import 'package:tracking_user/services/providers/client_provider.dart';
 
 class CardStatistiqueWidget extends StatelessWidget {
+  bool? isSav = false;
   final String title;
   int nbItem = -1;
   final Icon icon;
@@ -21,6 +17,7 @@ class CardStatistiqueWidget extends StatelessWidget {
 
   CardStatistiqueWidget(
       {Key? key,
+      this.isSav = false,
       required this.title,
       required this.icon,
       this.onTap,
@@ -61,12 +58,15 @@ class CardStatistiqueWidget extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            title,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20.sp,
-                                color: Colors.black),
+                          SizedBox(
+                            width: 150.w,
+                            child: Text(
+                              title,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20.sp,
+                                  color: Colors.black),
+                            ),
                           ),
                           useProgress
                               ? const SizedBox()
@@ -77,7 +77,9 @@ class CardStatistiqueWidget extends StatelessWidget {
                         ],
                       ),
                       nbItem == 0
-                          ? const Text('Il ne vous reste aucun client')
+                          ? isSav == null || isSav == false
+                              ? const Text('Aucun Client')
+                              : const Text('Aucun Client Sav')
                           : Text('Il vous reste $nbItem Clients'),
                     ],
                   ),

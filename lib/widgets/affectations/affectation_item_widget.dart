@@ -1,11 +1,8 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:iconly/iconly.dart';
 import 'package:tracking_user/model/affectation.dart';
-import 'package:tracking_user/model/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_user/widgets/affectations/icon_cercle_widget.dart';
-import 'package:tracking_user/widgets/affectations/client_info_modal_widget.dart';
 import 'package:intl/intl.dart';
 
 class AffectationItemWidget extends StatelessWidget {

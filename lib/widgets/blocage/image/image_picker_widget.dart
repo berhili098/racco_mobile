@@ -4,15 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:tracking_user/services/providers/blocage_provider.dart';
-import 'package:tracking_user/services/providers/user_provider.dart';
-import 'package:tracking_user/widgets/blocage/button_picker_widget.dart';
-import 'package:tracking_user/widgets/blocage/button_send_widget.dart';
 import 'package:tracking_user/widgets/validation/option_image_widget.dart';
 
 class ImagePickerBlocageWidget extends StatefulWidget {
   final String titel;
   final String imageTitle;
-  ImagePickerBlocageWidget({Key? key, required this.titel, required this.imageTitle}) : super(key: key);
+  const ImagePickerBlocageWidget({Key? key, required this.titel, required this.imageTitle}) : super(key: key);
 
   @override
   State<ImagePickerBlocageWidget> createState() =>

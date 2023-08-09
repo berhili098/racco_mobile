@@ -3,10 +3,8 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:tracking_user/model/affectation.dart';
 import 'package:tracking_user/services/providers/deblocage_provider.dart';
-import 'package:tracking_user/services/providers/declaration_provider.dart';
 import 'package:tracking_user/widgets/appBar/appbar_widget.dart';
 import 'package:tracking_user/widgets/deblocage/form_deblocage_widget.dart';
-import 'package:tracking_user/widgets/declaration/form_declaration_widget.dart';
 
 class DeblocagePage extends StatefulWidget {
   final Affectations affectation;

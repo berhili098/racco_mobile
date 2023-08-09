@@ -13,6 +13,6 @@ class OptionPage extends StatefulWidget {
 class _OptionPageState extends State<OptionPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: OptionListWidget());
+    return const Scaffold(body: OptionListWidget());
   }
 }

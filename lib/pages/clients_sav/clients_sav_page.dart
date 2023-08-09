@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:tracking_user/widgets/affectations/affactations_list_widget.dart';
 import 'package:tracking_user/widgets/appBar/appbar_widget.dart';
 
-class ClientPage extends StatefulWidget {
-const   ClientPage({Key? key}) : super(key: key);
+class ClientSavPage extends StatefulWidget {
+  const ClientSavPage({Key? key}) : super(key: key);
 
   @override
-  State<ClientPage> createState() => _ClientPageState();
+  State<ClientSavPage> createState() => _ClientSavPageState();
 }
 
-class _ClientPageState extends State<ClientPage> {
+class _ClientSavPageState extends State<ClientSavPage> {
   @override
   void initState() {
-
-
     // clientProvider.getClients(context,userProvider.latLngUser);
 
     super.initState();
@@ -23,7 +21,7 @@ class _ClientPageState extends State<ClientPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
-        title: "Clients \nAffecter",
+        title: "Clients Sav \nAffecter",
       ),
       body: const AffectationsListWidget(),
     );

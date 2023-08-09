@@ -26,11 +26,11 @@ class Declaration {
   String? feedbackBO;
 
 
-  Null? lat;
-  Null? lng;
+  String? lat;
+  String? lng;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  String? deletedAt;
 
   Declaration(
       {id,

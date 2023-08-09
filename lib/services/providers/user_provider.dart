@@ -220,7 +220,7 @@ class UserProvider extends ChangeNotifier {
     Map<LatLng, double> distances = {};
 
     for (var location in locations) {
-      double distanceInMeters = await Geolocator.distanceBetween(
+      double distanceInMeters = Geolocator.distanceBetween(
         position.latitude,
         position.longitude,
         location.latitude,
@@ -314,15 +314,15 @@ class UserProvider extends ChangeNotifier {
       //     deviseToken: deviseToken,
       //     bodyMessage: 'prix proposée  : $message',
       //     titleMessage: 'négociation');
-    }).catchError((error) => print("Failed to add user: $error"));
+    }).catchError((error) => print('Failed to add user: $error'));
   }
 
   List<Uint8List> imagelist = <Uint8List>[];
   Uint8List? image;
 
   void selectImages(BuildContext context) async {
-    final List<XFile>? selectedImages = await ImagePicker().pickMultiImage();
-    if (selectedImages!.isNotEmpty) {
+    final List<XFile> selectedImages = await ImagePicker().pickMultiImage();
+    if (selectedImages.isNotEmpty) {
       if (imagelist.length < 5 &&
           selectedImages.length <= 5 - imagelist.length) {
         for (int i = 0; i < selectedImages.take(5).length; i++) {
@@ -426,7 +426,7 @@ class UserProvider extends ChangeNotifier {
     response = await userApi.updatePlayerIdService(userId, playeriId);
 
     // try {
-    print(response.body);
+    
 
     switch (response.statusCode) {
       case 200:
@@ -489,7 +489,7 @@ class UserProvider extends ChangeNotifier {
 
     switch (response.statusCode) {
       case 200:
-        log("userId : ${userId}");
+        log("userId : $userId");
 
         log(response.body);
         log(response.statusCode.toString());
@@ -613,11 +613,11 @@ class UserProvider extends ChangeNotifier {
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
       checkedInternetPermission(true);
-      print(" mobil echeckedInternetPermission${true}");
+      
     } else {
       checkedInternetPermission(false);
 
-      print("checkedInternetPermission${false}");
+      
     }
   }
 
@@ -635,7 +635,7 @@ class UserProvider extends ChangeNotifier {
 
     serviceEnabledSetting = await location.requestService();
 
-    print("$_permissionGranted    location ");
+    
 
     if (_permissionGranted == loc.PermissionStatus.denied) {
       checkedServiceEnabledSetting(false);
@@ -660,7 +660,7 @@ class UserProvider extends ChangeNotifier {
   Future<void> checkImagePermission() async {
     final permissionStatus = await Permission.storage.status;
 
-    print("isDenied${permissionStatus.toString()}");
+    
 
     if (permissionStatus.isDenied) {
       await Permission.storage.request();
@@ -671,7 +671,7 @@ class UserProvider extends ChangeNotifier {
 
       await openAppSettings();
     } else {
-      print("isDenied${permissionStatus.toString()}");
+      
 
       checkedImagePermission(true);
     }

@@ -1,15 +1,8 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:tracking_user/pages/declaration/declaration_page.dart';
-import 'package:tracking_user/services/providers/blocage_provider.dart';
-import 'package:tracking_user/services/providers/declaration_provider.dart';
-import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:tracking_user/services/providers/validation_provider.dart';
-import 'package:tracking_user/widgets/blocage/button_picker_widget.dart';
-import 'package:tracking_user/widgets/blocage/button_send_widget.dart';
 
 class ImagePickerWidget extends StatelessWidget {
   final String titel;

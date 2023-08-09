@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:provider/provider.dart';
 
 class OptionListWidget extends StatelessWidget {
   const OptionListWidget({Key? key}) : super(key: key);
@@ -92,7 +91,7 @@ class OptionListWidget extends StatelessWidget {
                               child: Radio<String>(
                                 value: "",
                                 groupValue: "",
-                                activeColor: Color.fromRGBO(151, 72, 150, 1),
+                                activeColor: const Color.fromRGBO(151, 72, 150, 1),
                                 onChanged: (value) {},
                               ),
                             ),

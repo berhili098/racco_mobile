@@ -13,7 +13,7 @@ import 'package:tracking_user/neweracom.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget( NewEraCom());
+    await tester.pumpWidget( const NewEraCom());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

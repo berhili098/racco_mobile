@@ -57,7 +57,7 @@ class Affectations {
     updatedAt = DateTime.parse(json["updated_at"]);
 
     datePlanification =
-        json["planification_date"] == null ? '' : json["planification_date"];
+        json["planification_date"] ?? '';
     // lat = double.parse(json['lat'] ?? '0.0') ;
     // lng =double.parse(json['lng'] ?? '0.0');
     client = json['client'] != null ? Clients.fromJson(json['client']) : null;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_user/widgets/appBar/appbar_widget.dart';
-import 'package:tracking_user/widgets/blocage/type_blocage_widget.dart';
 import 'package:tracking_user/widgets/validation/blocage_validation/type_blocage_validation_widget.dart';
 
 class OptionBlocageValidationPage extends StatelessWidget {

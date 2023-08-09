@@ -5,8 +5,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
-import 'package:tracking_user/model/affectation.dart';
-import 'package:tracking_user/model/ticket_orange.dart';
 import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 
@@ -32,20 +30,18 @@ class NetworkHelper {
   Future getData() async {
     http.Response response = await http.get(Uri.parse(
         '$url$journeyMode?api_key=$apiKey&start=$startLng,$startLat&end=$endLng,$endLat'));
-    print(
-        "$url$journeyMode?$apiKey&start=$startLng,$startLat&end=$endLng,$endLat");
 
     if (response.statusCode == 200) {
       String data = response.body;
       return jsonDecode(data);
-    } else {
-      print(response.statusCode);
-    }
+    } else {}
   }
 }
 
 class PolylineORSPage extends StatefulWidget {
   static const String route = 'polyline';
+
+  const PolylineORSPage({super.key});
 
   @override
   State<PolylineORSPage> createState() => _PolylineORSPageState();
@@ -88,10 +84,9 @@ class _PolylineORSPageState extends State<PolylineORSPage> {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
 
-        final affectationProvider = Provider.of<AffectationProvider>(context);
+    final affectationProvider = Provider.of<AffectationProvider>(context);
 
-
-    List<Marker> _markers = [
+    List<Marker> markers = [
       LatLng(13, 77.5),
       LatLng(13.02, 77.51),
       LatLng(13.05, 77.53),
@@ -103,7 +98,7 @@ class _PolylineORSPageState extends State<PolylineORSPage> {
               point: point,
               width: 60,
               height: 60,
-              builder: (context) =>  const Icon(
+              builder: (context) => const Icon(
                 Icons.pin_drop,
                 size: 60,
                 color: Colors.blueAccent,
@@ -140,36 +135,34 @@ class _PolylineORSPageState extends State<PolylineORSPage> {
     //     }
 
     //     if (polyPoints.length == ls.lineString.length) {
-    //       print(ls);
-    //       //print(polyPoints);
+    //
+    //       //
     //     }
     //   } catch (e) {
-    //     print(e);
-    //     //print(polyPoints);
+    //
+    //     //
     //   }
     // }
 
     // getJsonData();
     return Scaffold(
-      appBar: AppBar(title: Text('SAV')),
+      appBar: AppBar(title: const Text('SAV')),
       // drawer: buildDrawer(context, PolylineORSPage.route),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-          
             Flexible(
               child: FlutterMap(
                 options: MapOptions(
-                  center: LatLng(33.593,
-                         -7.6179),
+                  center: LatLng(33.593, -7.6179),
                   zoom: 10.0,
                 ),
                 children: [
                   TileLayer(
                       urlTemplate:
                           'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      subdomains: ['a', 'b', 'c']),
+                      subdomains: const ['a', 'b', 'c']),
                   PolylineLayer(
                     polylines: [
                       Polyline(
@@ -182,27 +175,25 @@ class _PolylineORSPageState extends State<PolylineORSPage> {
                   // MarkerLayer(markers: _markers),
                   MarkerLayer(markers: [
                     Marker(
-                      point: LatLng(33.593,
-                         -7.6179),
+                      point: LatLng(33.593, -7.6179),
                       width: 60,
                       height: 60,
                       builder: (context) => Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                         color: Colors.white, 
-                                        width: 5.0,
-                                      ),
-                                      color: const Color.fromRGBO(
-                                          5, 119, 130, 1),
-                                      shape: BoxShape.circle),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.network(
-                                        "https://cdn-icons-png.flaticon.com/128/931/931633.png",
-                                           color: Colors.white,
-                                        fit: BoxFit.fitHeight),
-                                  ),
-                                ),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 5.0,
+                            ),
+                            color: const Color.fromRGBO(5, 119, 130, 1),
+                            shape: BoxShape.circle),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.network(
+                              "https://cdn-icons-png.flaticon.com/128/931/931633.png",
+                              color: Colors.white,
+                              fit: BoxFit.fitHeight),
+                        ),
+                      ),
                     )
                   ]),
                   // StreamBuilder<List<TicketOrange>>(
@@ -220,7 +211,7 @@ class _PolylineORSPageState extends State<PolylineORSPage> {
                   //                     builder: (context) => Container(
                   //                 decoration: BoxDecoration(
                   //                     border: Border.all(
-                  //                        color: Colors.white, 
+                  //                        color: Colors.white,
                   //                       width: 5.0,
                   //                     ),
                   //                     color: const  Color.fromARGB(255, 230, 156, 60),
@@ -241,42 +232,45 @@ class _PolylineORSPageState extends State<PolylineORSPage> {
                   //       return const MarkerLayer(markers: []);
                   //     })
 
-
-
-                         
-                           MarkerLayer(
-                              markers: affectationProvider.affectations
-                                  .map(
-                                    (e) => Marker(
-                                      point: LatLng(e.lat!,
-                                     e.lng!),
-                                      width: 60,
-                                      height: 60,
-                                      builder: (context) => Container(
-                                        alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                         color: Colors.white, 
-                                        width: 5.0,
-                                      ),
-                                      color:  affectationProvider.affectations.indexOf(e) <3 ? const Color.fromARGB(255, 230, 60, 60) :const  Color.fromARGB(255, 230, 156, 60),
-                                      shape: BoxShape.circle),
-                                  child: Padding(
+                  MarkerLayer(
+                      markers: affectationProvider.affectations
+                          .map(
+                            (e) => Marker(
+                              point: LatLng(e.lat!, e.lng!),
+                              width: 60,
+                              height: 60,
+                              builder: (context) => Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 5.0,
+                                    ),
+                                    color: affectationProvider.affectations
+                                                .indexOf(e) <
+                                            3
+                                        ? const Color.fromARGB(255, 230, 60, 60)
+                                        : const Color.fromARGB(
+                                            255, 230, 156, 60),
+                                    shape: BoxShape.circle),
+                                child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child:  Text(  e.id.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white),)
-                                    
-                                    
+                                    child: Text(
+                                      e.id.toString(),
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    )
+
                                     // Image.network(
                                     //     "https://cdn-icons-png.flaticon.com/128/1069/1069138.png",
                                     //        color: Colors.white,
                                     //     fit: BoxFit.fitHeight),
-                                  ),
-                                ),
                                     ),
-                                  )
-                                  .toList())
-                       
-
+                              ),
+                            ),
+                          )
+                          .toList())
 
                   // PolylineLayer(
                   //   polylines: [

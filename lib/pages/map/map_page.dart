@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart'; // Suitable for most situations
 import 'package:flutter_map/plugin_api.dart';
 
-import 'package:line_animator/line_animator.dart';
 import 'package:location/location.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 // ignore: depend_on_referenced_packages
@@ -15,7 +14,7 @@ import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 
 class MapPage extends StatefulWidget {
-  MapPage({Key? key}) : super(key: key);
+  const MapPage({Key? key}) : super(key: key);
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -40,11 +39,11 @@ class _MapPageState extends State<MapPage> {
   ValueNotifier<LatLng> latLng = ValueNotifier<LatLng>(LatLng(0.0, 0.0));
 // wrapper around the location API
 
-  Set<Polyline> _polylines = Set<Polyline>();
+  final Set<Polyline> _polylines = <Polyline>{};
   List<LatLng> polylineCoordinates = [];
   late PolylinePoints polylinePoints;
 
-  Location location = new Location();
+  Location location = Location();
   late bool _serviceEnabled;
   PermissionStatus? _permissionGranted;
   late LocationData locationData;
@@ -125,7 +124,7 @@ class _MapPageState extends State<MapPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PolylineORSPage()),
+                    MaterialPageRoute(builder: (context) => const PolylineORSPage()),
                   );
                 },
                 child: const Text('Entrer sur lap map'),
@@ -147,7 +146,7 @@ class _MapPageState extends State<MapPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => AffectationListPage()),
+                        builder: (context) => const AffectationListPage()),
                   );
                 },
                 child: const Text('Entrer sur la liste '),
@@ -159,7 +158,7 @@ class _MapPageState extends State<MapPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ImagePickerWidget()),
+                        builder: (context) => const ImagePickerWidget()),
                   );
                 },
                 child: const Text('Choisir une image '),

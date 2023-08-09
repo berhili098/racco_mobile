@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:tracking_user/routes.dart';
-import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/client_provider.dart';
-import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:tracking_user/widgets/loading/loading_affectation_widget.dart';
 
 class AffectationListPage extends StatefulWidget {
-  AffectationListPage({Key? key}) : super(key: key);
+  const AffectationListPage({Key? key}) : super(key: key);
 
   @override
   State<AffectationListPage> createState() => _AffectationListPageState();
@@ -20,8 +16,6 @@ class _AffectationListPageState extends State<AffectationListPage> {
     // final affectationProvider = Provider.of<AffectationProvider>(context);
     final clientProvider = Provider.of<ClientProvider>(context);
 
-
-    
     return Scaffold(
       appBar: AppBar(),
       body: Builder(builder: (context) {
@@ -79,13 +73,10 @@ class _AffectationListPageState extends State<AffectationListPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     InkWell(
-                                        onTap: () {
-                                          
-                                            
-                                        },
-                                        child: Text('Blocage')),
-                                    Text('Déclaration'),
-                                    Text('Planifiée'),
+                                        onTap: () {},
+                                        child: const Text('Blocage')),
+                                    const Text('Déclaration'),
+                                    const Text('Planifiée'),
                                   ],
                                 ),
                               )

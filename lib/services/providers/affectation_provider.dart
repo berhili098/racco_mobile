@@ -1,18 +1,13 @@
-import 'dart:developer';
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 
-import 'package:location/location.dart' as loc;
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:image/image.dart' as IMG;
 import 'package:geolocator_platform_interface/src/enums/location_accuracy.dart'
     as te;
 import 'package:tracking_user/model/affectation.dart';

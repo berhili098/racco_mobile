@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,11 +8,8 @@ import 'package:iconly/iconly.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:tracking_user/model/affectation.dart';
-import 'package:tracking_user/model/blocage.dart';
-import 'package:tracking_user/model/client.dart';
 import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/providers/affectation_provider.dart';
-import 'package:tracking_user/services/providers/client_provider.dart';
 import 'package:tracking_user/services/providers/declaration_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:tracking_user/services/providers/validation_provider.dart';
@@ -22,7 +17,6 @@ import 'package:tracking_user/widgets/affectations/affectation_item_widget.dart'
 import 'package:tracking_user/widgets/affectations/icon_botton_widget.dart';
 import 'package:tracking_user/widgets/affectations/icon_cercle_widget.dart';
 import 'package:tracking_user/widgets/notification/snack_bar_widget.dart';
-import 'package:tracking_user/widgets/planification/showCupertinoDatePicker.dart';
 import 'package:intl/intl.dart';
 
 class ClientInfoModalBlocageWidget extends StatelessWidget {
