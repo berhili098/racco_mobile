@@ -1,16 +1,14 @@
 import 'package:iconly/iconly.dart';
-import 'package:tracking_user/model/affectation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_user/model/sav_ticket.dart';
 import 'package:tracking_user/widgets/affectations/icon_cercle_widget.dart';
-import 'package:intl/intl.dart';
 
-class AffectationItemWidget extends StatelessWidget {
-  final Affectations affectation;
+class SavTicketItem extends StatelessWidget {
+  final SavTicket affectation;
   final bool showInfoIcon;
   final void Function()? onTap;
-  const AffectationItemWidget(
+  const SavTicketItem(
       {super.key,
       required this.affectation,
       required this.showInfoIcon,
@@ -64,15 +62,14 @@ class AffectationItemWidget extends StatelessWidget {
                         ),
                         Expanded(
                           child: SizedBox(
-                    
                             child: SelectableText(
                               affectation.client!.clientId ?? '',
                               textAlign: TextAlign.start,
-                               toolbarOptions: const ToolbarOptions(
-                              copy: true,
-                              selectAll: true,
-                            ),
-                            showCursor: true,
+                              toolbarOptions: const ToolbarOptions(
+                                copy: true,
+                                selectAll: true,
+                              ),
+                              showCursor: true,
                               style: TextStyle(
                                   fontSize: 16.sp, color: Colors.black),
                             ),
@@ -94,7 +91,6 @@ class AffectationItemWidget extends StatelessWidget {
                         ),
                         Expanded(
                           child: SizedBox(
-              
                             child: Text(
                               affectation.client!.name ?? '',
                               textAlign: TextAlign.start,
@@ -136,34 +132,6 @@ class AffectationItemWidget extends StatelessWidget {
                     const SizedBox(
                       height: 7,
                     ),
-                    affectation.datePlanification!.isNotEmpty
-                        ? Visibility(
-                            visible: affectation.status != 'Bloqué' &&
-                                affectation.status != 'Terminé' &&     affectation.status != 'En cours',
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Planifié : ',
-                                  style: TextStyle(
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.black),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    affectation.datePlanification!.isNotEmpty
-                                        ? DateFormat('dd/MM/yyyy HH:mm').format(
-                                            DateTime.parse(affectation.datePlanification!))
-                                        : '',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 16.sp, color: Colors.red),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : const SizedBox(),
                   ],
                 ),
               ),

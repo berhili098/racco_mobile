@@ -6,6 +6,9 @@ import 'package:tracking_user/model/user.dart';
 import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 
+import '../../pages/clients_sav/client_plan_sav_page.dart';
+import '../../pages/clients_sav/clients_sav_page.dart';
+
 class DrawerHomeWidget extends StatelessWidget {
   final User user;
   const DrawerHomeWidget({Key? key, required this.user}) : super(key: key);
@@ -48,10 +51,31 @@ class DrawerHomeWidget extends StatelessWidget {
                 },
               ),
               ListTile(
+                leading: const Icon(IconlyLight.user),
+                title: const Text("Client Sav Affecter"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ClientSavPage()),
+                  );
+                },
+              ),
+              ListTile(
                 leading: const Icon(IconlyLight.calendar),
                 title: const Text("Client planifier"),
                 onTap: () {
                   context.push(routeFormTechniqueBlocage);
+                },
+              ),
+              ListTile(
+                leading: const Icon(IconlyBold.calendar),
+                title: const Text("Client Sav planifier"),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ClientSavPlanPage()));
                 },
               ),
               ListTile(
@@ -66,9 +90,7 @@ class DrawerHomeWidget extends StatelessWidget {
                 title: const Text("Déconnecter",
                     style: TextStyle(color: Colors.red)),
                 onTap: () async {
-                  await userProvider
-                      .logOut(user.id.toString(), context)
-                  ;
+                  await userProvider.logOut(user.id.toString(), context);
                 },
               ),
             ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tracking_user/widgets/affectations/affactations_list_widget.dart';
 import 'package:tracking_user/widgets/appBar/appbar_widget.dart';
+
+import '../../widgets/sav/sav_widget.dart';
 
 class ClientSavPage extends StatefulWidget {
   const ClientSavPage({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _ClientSavPageState extends State<ClientSavPage> {
       appBar: AppBarWidget(
         title: "Clients Sav \nAffecter",
       ),
-      body: const AffectationsListWidget(),
+      body: const SavTicketListWidget(),
     );
   }
 }

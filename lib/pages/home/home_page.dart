@@ -41,13 +41,16 @@ class _HomePageState extends State<HomePage> {
 
       userProvider.sendRepairTechnicien();
       affectationProvider.generateRandomNumber();
-
       userProvider.getUserFromStorage().then((value) => {
             affectationProvider.getAffectationTechnicien(
+                context, userProvider.userData!.technicienId.toString()),
+            affectationProvider.getTicketTechnicien(
                 context, userProvider.userData!.technicienId.toString()),
             affectationProvider.getAffectationPromoteurTechnicien(
                 context, userProvider.userData!.technicienId.toString()),
             affectationProvider.getAffectationPlanifier(
+                context, userProvider.userData!.technicienId.toString()),
+            affectationProvider.getSavTicketPlanifier(
                 context, userProvider.userData!.technicienId.toString()),
             userProvider.getNotifications(
                 context, userProvider.userData!.id.toString()),
@@ -60,9 +63,6 @@ class _HomePageState extends State<HomePage> {
               userProvider.checkTechnicienIsBlocked(
                   context, userProvider.userData!.id.toString())
             });
-
-        
-        
 
         if (event.notification.subtitle == "test") {}
 

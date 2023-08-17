@@ -15,7 +15,7 @@ class PermissionPage extends StatefulWidget {
 }
 
 class _PermissionPageState extends State<PermissionPage> {
-  LocationPermission? _locationPermission;
+  LocationPermission? locationPermission;
 
   @override
   void initState() {
@@ -54,8 +54,8 @@ class _PermissionPageState extends State<PermissionPage> {
                 begin: Alignment(1, 1.5),
                 end: Alignment(-0.94597145915031433, -0.8),
                 colors: [
-                              Color.fromRGBO(89, 185, 255, 1),
-                            Color.fromRGBO(97, 113, 186, 1)
+                  Color.fromRGBO(89, 185, 255, 1),
+                  Color.fromRGBO(97, 113, 186, 1)
                 ]),
           )),
         ),
@@ -150,16 +150,10 @@ class _PermissionPageState extends State<PermissionPage> {
                   // Navigate to the next page
 
                   userProvider.checkAllPermission().whenComplete(() {
-
-
-             
                     if (userProvider.internetPermission == true &&
                         userProvider.imagePermission == true &&
                         userProvider.cameraPermission == true &&
                         userProvider.serviceEnabledSetting == true) {
-
-
-
                       context.go('/home');
                       userProvider.stopLoading();
                     }

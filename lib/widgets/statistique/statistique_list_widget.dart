@@ -1,14 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:tracking_user/pages/clients_sav/client_plan_sav_page.dart';
 import 'package:tracking_user/pages/clients_sav/clients_sav_page.dart';
 import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/client_provider.dart';
 import 'package:tracking_user/services/providers/declaration_provider.dart';
+import 'package:tracking_user/services/providers/declaration_sav_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:tracking_user/services/providers/validation_provider.dart';
@@ -29,6 +33,8 @@ class StatistiqueListWidget extends StatelessWidget {
     final affectationProvider = Provider.of<AffectationProvider>(context);
     final validationProvider =
         Provider.of<ValidationProvider>(context, listen: false);
+    final declarationSavProvier =
+        Provider.of<DeclarationSavProvider>(context, listen: false);
     final declarationProvider =
         Provider.of<DeclarationProvider>(context, listen: false);
 
@@ -38,7 +44,6 @@ class StatistiqueListWidget extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            // Figma Flutter Generator Rectangle4164Widget - RECTANGLE
             Stack(
               children: [
                 ClipPath(
@@ -148,8 +153,15 @@ class StatistiqueListWidget extends StatelessWidget {
 
                                     // affectationProvider.getAffectationDeclarer(
                                     //     context, userProvider.userData!.technicienId.toString());
-
+                                    affectationProvider.getTicketTechnicien(
+                                        context,
+                                        userProvider.userData!.technicienId
+                                            .toString());
                                     affectationProvider.getAffectationBlocage(
+                                        context,
+                                        userProvider.userData!.technicienId
+                                            .toString());
+                                    affectationProvider.getSavTicketPlanifier(
                                         context,
                                         userProvider.userData!.technicienId
                                             .toString());
@@ -239,14 +251,18 @@ class StatistiqueListWidget extends StatelessWidget {
                           20.verticalSpace,
                           CardStatistiqueWidget(
                             icon: const Icon(Icons.abc),
-                            nbItem: affectationProvider.affectations.length,
+                            nbItem: affectationProvider.savTicket.length,
                             percent: 1.0,
                             title: "Vos clients Sav",
                             isSav: true,
                             useProgress: true,
                             onTap: () {
-                              validationProvider.initValue();
-                              declarationProvider.initValue();
+                              affectationProvider.getTicketTechnicien(
+                                  context,
+                                  userProvider.userData!.technicienId
+                                      .toString());
+
+                              declarationSavProvier.initValue();
                               // context.push(routeAffectations);
                               Navigator.push(
                                 context,
@@ -256,7 +272,7 @@ class StatistiqueListWidget extends StatelessWidget {
                               );
                             },
                           ),
-                          const SizedBox(height: 20),
+                          20.verticalSpace,
                           CardPlanificationWidget(
                             icon: const Icon(Icons.abc),
                             nbItem: affectationProvider
@@ -268,6 +284,30 @@ class StatistiqueListWidget extends StatelessWidget {
                             onTap: () =>
                                 context.push(routeFormTechniqueBlocage),
                           ),
+                          20.verticalSpace,
+                          CardPlanificationWidget(
+                              icon: const Icon(Icons.abc),
+                              nbItem: affectationProvider
+                                  .savTicketPlanifier.length
+                                  .toString(),
+                              percent: 1.0,
+                              title: "Clients Sav planifiés",
+                              useProgress: false,
+                              onTap: () {
+                                affectationProvider.getSavTicketPlanifier(
+                                    context,
+                                    userProvider.userData!.technicienId
+                                        .toString());
+
+                                declarationSavProvier.initValue();
+                                // context.push(routeAffectations);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ClientSavPlanPage()),
+                                );
+                              }),
                           HomerdWidget(
                             title: "Demandes PPI",
                             onTap: () {

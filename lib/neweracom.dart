@@ -10,6 +10,7 @@ import 'package:tracking_user/services/providers/blocage_provider.dart';
 import 'package:tracking_user/services/providers/client_provider.dart';
 import 'package:tracking_user/services/providers/deblocage_provider.dart';
 import 'package:tracking_user/services/providers/declaration_provider.dart';
+import 'package:tracking_user/services/providers/declaration_sav_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:tracking_user/services/providers/validation_provider.dart';
 
@@ -56,6 +57,8 @@ class _NewEraComState extends State<NewEraCom> with WidgetsBindingObserver {
             create: (_) => BlocageProvider()),
         ChangeNotifierProvider<DeclarationProvider>(
             create: (_) => DeclarationProvider()),
+        ChangeNotifierProvider<DeclarationSavProvider>(
+            create: (_) => DeclarationSavProvider()),
         ChangeNotifierProvider<ValidationProvider>(
             create: (_) => ValidationProvider()),
       ],

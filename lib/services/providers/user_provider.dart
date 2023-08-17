@@ -426,7 +426,6 @@ class UserProvider extends ChangeNotifier {
     response = await userApi.updatePlayerIdService(userId, playeriId);
 
     // try {
-    
 
     switch (response.statusCode) {
       case 200:
@@ -613,11 +612,8 @@ class UserProvider extends ChangeNotifier {
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
       checkedInternetPermission(true);
-      
     } else {
       checkedInternetPermission(false);
-
-      
     }
   }
 
@@ -634,8 +630,6 @@ class UserProvider extends ChangeNotifier {
     _permissionGranted = await location.hasPermission();
 
     serviceEnabledSetting = await location.requestService();
-
-    
 
     if (_permissionGranted == loc.PermissionStatus.denied) {
       checkedServiceEnabledSetting(false);
@@ -660,8 +654,6 @@ class UserProvider extends ChangeNotifier {
   Future<void> checkImagePermission() async {
     final permissionStatus = await Permission.storage.status;
 
-    
-
     if (permissionStatus.isDenied) {
       await Permission.storage.request();
 
@@ -671,8 +663,6 @@ class UserProvider extends ChangeNotifier {
 
       await openAppSettings();
     } else {
-      
-
       checkedImagePermission(true);
     }
   }

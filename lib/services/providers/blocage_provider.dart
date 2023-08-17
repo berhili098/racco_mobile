@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tracking_user/model/blocage.dart';
@@ -15,12 +16,16 @@ import 'package:location/location.dart';
 import 'package:tracking_user/storage/shared_preferences.dart';
 import 'package:tracking_user/widgets/notification/snack_bar_widget.dart';
 
+import 'package:http/http.dart' as http;
+
 class BlocageProvider extends ChangeNotifier {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController adresseLinkController = TextEditingController();
   TextEditingController typeBlocageController = TextEditingController();
   TextEditingController typeBlocageValidationController =
       TextEditingController();
+
+  String savUrl = dotenv.get('SAV_URL', fallback: '');
   // =============== function ===================
   String checkValueBlocageClient = '';
   String checkValueBlocageValidatinClient = '';
@@ -82,6 +87,28 @@ class BlocageProvider extends ChangeNotifier {
   String groupValue = '';
   String groupValidationValue = '';
 
+  validate(context) async {
+    if (typeBlocageController.text.isEmpty) {
+      SncakBarWidgdet.snackBarSucces(
+          context, "Veuillez Selectionner un type de blockage.");
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Future updateDeclarationSav(Object data) async {
+    var headers = {'Accept': 'application/json'};
+    Uri uri = Uri.parse('$savUrl/addFeedbackBlockage');
+    try {
+      http.post(uri, headers: headers, body: data);
+      return true;
+    } catch (e) {
+      print(e.toString());
+      return false;
+    }
+  }
+
   setValueTypeBlocage(BlocageClient value) {
     typeBlocageController.text = getStringFromSwitch(value);
     groupValue = getStringFromSwitch(value);
@@ -108,9 +135,9 @@ class BlocageProvider extends ChangeNotifier {
       BuildContext context, String imageName) async {
     final XFile? selectedImages = await ImagePicker().pickImage(
         source: ImageSource.gallery,
-      maxHeight: 480,
-      maxWidth: 640,
-      imageQuality: 100);
+        maxHeight: 480,
+        maxWidth: 640,
+        imageQuality: 100);
 
     if (selectedImages != null) {
       image = File(selectedImages.path).readAsBytesSync();
@@ -131,9 +158,9 @@ class BlocageProvider extends ChangeNotifier {
       BuildContext context, String imageName) async {
     final XFile? selectedImages = await ImagePicker().pickImage(
         source: ImageSource.camera,
-       maxHeight: 480,
-      maxWidth: 640,
-      imageQuality: 100);
+        maxHeight: 480,
+        maxWidth: 640,
+        imageQuality: 100);
 
     if (selectedImages != null) {
       image = File(selectedImages.path).readAsBytesSync();
@@ -188,9 +215,7 @@ class BlocageProvider extends ChangeNotifier {
     Uri uri = Uri.parse(text);
     String hostName = uri.host;
 
-
-   return hostName == "maps.app.goo.gl" || hostName == "www.google.com" ;
-    
+    return hostName == "maps.app.goo.gl" || hostName == "www.google.com";
   }
 
   void showDialog(Widget child, BuildContext context) {
@@ -349,7 +374,7 @@ class BlocageProvider extends ChangeNotifier {
     notifyListeners();
 
     // try {
-    
+
     response = await blocageApi.declarationBlocage(
         affectationId,
         cause,
@@ -429,8 +454,6 @@ class BlocageProvider extends ChangeNotifier {
 
     isLoading = true;
     notifyListeners();
-
-    
 
     switch (response.statusCode) {
       case 200:

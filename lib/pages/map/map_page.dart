@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart'; // Suitable for most situations
-import 'package:flutter_map/plugin_api.dart';
+// Suitable for most situations
 
 import 'package:location/location.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -39,7 +38,7 @@ class _MapPageState extends State<MapPage> {
   ValueNotifier<LatLng> latLng = ValueNotifier<LatLng>(LatLng(0.0, 0.0));
 // wrapper around the location API
 
-  final Set<Polyline> _polylines = <Polyline>{};
+  // final Set<Polyline> _polylines = <Polyline>{};
   List<LatLng> polylineCoordinates = [];
   late PolylinePoints polylinePoints;
 
@@ -110,7 +109,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
-    final affectationProvider = Provider.of<AffectationProvider>(context);
+    // final affectationProvider = Provider.of<AffectationProvider>(context);
 
     return Scaffold(
         appBar: AppBar(),
@@ -124,7 +123,8 @@ class _MapPageState extends State<MapPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const PolylineORSPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const PolylineORSPage()),
                   );
                 },
                 child: const Text('Entrer sur lap map'),

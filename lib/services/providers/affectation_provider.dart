@@ -2,23 +2,31 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
+import 'package:http/http.dart' as http;
+
 import 'package:geolocator_platform_interface/src/enums/location_accuracy.dart'
     as te;
 import 'package:tracking_user/model/affectation.dart';
 import 'package:tracking_user/model/blocage.dart';
+import 'package:tracking_user/model/sav_ticket.dart';
 import 'package:tracking_user/services/affectations_services.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:tracking_user/storage/shared_preferences.dart';
 import 'package:tracking_user/widgets/notification/snack_bar_widget.dart';
 
+import '../../pages/home/home_page.dart';
+
 class AffectationProvider extends ChangeNotifier {
   int indexTab = 0;
+
+  String savUrl = dotenv.get('SAV_URL', fallback: '');
 
   int conterCheckCaptcha = 0;
   int conterCheckCaptchaShow = 0;
@@ -31,6 +39,42 @@ class AffectationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future updateDeclarationSav(Object data) async {
+    var headers = {'Accept': 'application/json'};
+    Uri uri = Uri.parse('$savUrl/addPlanned');
+    try {
+      http.post(uri, headers: headers, body: data);
+      return true;
+    } catch (e) {
+      print(e.toString());
+      return false;
+    }
+  }
+
+  submit(context, SavTicket affectation) {
+    loading = true;
+    notifyListeners();
+
+    updateDeclarationSav({
+      'sav_ticket_id': affectation.id.toString(),
+      'planification_da,te': result.toString()
+    }).then((value) {
+      loading = false;
+      notifyListeners();
+      if (value) {
+        SncakBarWidgdet.snackBarSucces(context, "Client planifié avec succés");
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
   void initialConterCheckCaptcha() {
     conterCheckCaptchaShow = 0;
 
@@ -40,13 +84,11 @@ class AffectationProvider extends ChangeNotifier {
   void incrementConter() {
     conterCheckCaptchaShow++;
 
-
     notifyListeners();
   }
 
   getIndexTab(int index) {
     indexTab = index;
-
   }
 
   RefreshController refreshController =
@@ -79,9 +121,27 @@ class AffectationProvider extends ChangeNotifier {
   void onRefresh(BuildContext context, String id) async {
     // monitor network fetch
 
-    await getAffectationTechnicien(context, id);
+    try {
+      await getAffectationTechnicien(context, id);
+
+      refreshController.refreshCompleted();
+    } catch (e) {
+      refreshController.refreshFailed();
+    }
     // if failed,use refreshFailed()
-    refreshController.refreshCompleted();
+  }
+
+  void onRefreshTec(BuildContext context, String id) async {
+    // monitor network fetch
+
+    try {
+      await getTicketTechnicien(context, id);
+
+      refreshController.refreshCompleted();
+    } catch (e) {
+      refreshController.refreshFailed();
+    }
+    // if failed,use refreshFailed()
   }
 
   void onRefreshPromoteur(BuildContext context, String id) async {
@@ -96,6 +156,14 @@ class AffectationProvider extends ChangeNotifier {
     // monitor network fetch
 
     await getAffectationPlanifier(context, id);
+    // if failed,use refreshFailed()
+    refreshController.refreshCompleted();
+  }
+
+  void onRefreshSavPlanification(BuildContext context, String id) async {
+    // monitor network fetch
+
+    await getSavTicketPlanifier(context, id);
     // if failed,use refreshFailed()
     refreshController.refreshCompleted();
   }
@@ -157,9 +225,12 @@ class AffectationProvider extends ChangeNotifier {
   bool loading = false;
 
   List<Affectations> affectations = [];
+  List<SavTicket> savTicket = [];
   List<Affectations> affectationsPromoteur = [];
   List<Affectations> affectationsPlanifier = [];
+  List<SavTicket> savTicketPlanifier = [];
   List<Affectations> affectationsPlanifierFiltre = [];
+  List<SavTicket> savPlanifierFiltre = [];
   List<Affectations> affectationsValider = [];
   List<Affectations> affectationsValiderFiltre = [];
   List<Affectations> affectationsDeclarer = [];
@@ -287,6 +358,47 @@ class AffectationProvider extends ChangeNotifier {
     return;
   }
 
+  Future<void> getTicketTechnicien(BuildContext context, String id,
+      {bool callNotify = false}) async {
+    loading = false;
+
+    try {
+      // loading = true;
+      // notifyListeners();
+      response = await affectationsApi.getSavTicketTechnicien(id);
+      switch (response.statusCode) {
+        case 200:
+          savTicket.clear();
+
+          var result = json.decode(response.body)["tickets"];
+
+          for (int i = 0; i < result.length; i++) {
+            savTicket.add(SavTicket.fromJson(result[i]));
+          }
+
+          // refreshController.loadComplete();
+
+          loading = false;
+          notifyListeners();
+
+          break;
+        default:
+        // showSnackBarError('vérifier votre connection internet', context);
+      }
+    } on SocketException {
+      // errorInternet = true;
+      notifyListeners();
+
+      // showSnackBarError('vérifier votre connection internet', context);
+
+      // SncakBarWidgdet.snackBarError(context, "client est déclaré en blocage");
+    } catch (e) {
+      // SncakBarWidgdet.snackBarError(context, e.toString());
+    }
+
+    return;
+  }
+
   Future<void> getAffectationTechnicien(BuildContext context, String id,
       {bool callNotify = false}) async {
     loading = false;
@@ -339,7 +451,6 @@ class AffectationProvider extends ChangeNotifier {
       // notifyListeners();
       response = await affectationsApi.getAffectationPromoteurTechnicien(id);
 
-
       switch (response.statusCode) {
         case 200:
           affectationsPromoteur.clear();
@@ -388,6 +499,43 @@ class AffectationProvider extends ChangeNotifier {
           for (int i = 0; i < result.length; i++) {
             affectationsPlanifier.add(Affectations.fromJson(result[i]));
             affectationsPlanifierFiltre.add(Affectations.fromJson(result[i]));
+          }
+          // refreshController.loadComplete();
+          notifyListeners();
+
+          break;
+        default:
+        // showSnackBarError('vérifier votre connection internet', context);
+      }
+      loading = false;
+      notifyListeners();
+    } on SocketException {
+      // errorInternet = true;
+      notifyListeners();
+
+      // SncakBarWidgdet.snackBarError(context, "client est déclaré en blocage");
+    } catch (e) {
+      // SncakBarWidgdet.snackBarError(context, e.toString());
+    }
+
+    return;
+  }
+
+  Future<void> getSavTicketPlanifier(BuildContext context, String id,
+      {bool callNotify = false}) async {
+    try {
+      loading = true;
+      notifyListeners();
+      response = await affectationsApi.getSavTicketPlanifier(id);
+      switch (response.statusCode) {
+        case 200:
+          savTicketPlanifier.clear();
+          savPlanifierFiltre.clear();
+          var result = json.decode(response.body)["tickets"];
+
+          for (int i = 0; i < result.length; i++) {
+            savTicketPlanifier.add(SavTicket.fromJson(result[i]));
+            savPlanifierFiltre.add(SavTicket.fromJson(result[i]));
           }
           // refreshController.loadComplete();
           notifyListeners();

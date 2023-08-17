@@ -5,14 +5,15 @@ import 'package:tracking_user/widgets/loading/loading_affectation_widget.dart';
 import 'package:tracking_user/widgets/sav/client_sav_info_modal_widget.dart';
 import 'package:tracking_user/widgets/sav/sav_ticket_item.dart';
 
-class SavTicketListWidget extends StatefulWidget {
-  const SavTicketListWidget({Key? key}) : super(key: key);
+class SavTickePlantListWidget extends StatefulWidget {
+  const SavTickePlantListWidget({Key? key}) : super(key: key);
 
   @override
-  State<SavTicketListWidget> createState() => _SavTicketListWidgetState();
+  State<SavTickePlantListWidget> createState() =>
+      _SavTickePlantListWidgetState();
 }
 
-class _SavTicketListWidgetState extends State<SavTicketListWidget> {
+class _SavTickePlantListWidgetState extends State<SavTickePlantListWidget> {
   @override
   Widget build(BuildContext context) {
     final affectationProvider = Provider.of<AffectationProvider>(context);
@@ -27,7 +28,7 @@ class _SavTicketListWidgetState extends State<SavTicketListWidget> {
           Expanded(
             child: Builder(builder: (context) {
               return ListView.builder(
-                itemCount: affectationProvider.savTicket.length,
+                itemCount: affectationProvider.savTicketPlanifier.length,
                 itemBuilder: (context, i) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -43,11 +44,11 @@ class _SavTicketListWidgetState extends State<SavTicketListWidget> {
                               builder: (context) {
                                 return ClientSavInfoModalWidget(
                                   withPlanification: false,
-                                  affectation: affectationProvider.savTicket[i],
+                                  affectation: affectationProvider.savTicketPlanifier[i],
                                 );
                               }).whenComplete(() {});
                         },
-                        affectation: affectationProvider.savTicket[i],
+                        affectation: affectationProvider.savTicketPlanifier[i],
                         showInfoIcon: true),
                   );
                 },

@@ -8,24 +8,27 @@ import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
-import 'package:tracking_user/model/affectation.dart';
+import 'package:tracking_user/model/sav_ticket.dart';
+import 'package:tracking_user/pages/blocage/blocage_sav.dart';
 import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/providers/affectation_provider.dart';
 import 'package:tracking_user/services/providers/declaration_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:tracking_user/services/providers/validation_provider.dart';
-import 'package:tracking_user/widgets/affectations/affectation_item_widget.dart';
 import 'package:tracking_user/widgets/affectations/icon_botton_widget.dart';
 import 'package:tracking_user/widgets/affectations/icon_cercle_widget.dart';
 import 'package:tracking_user/widgets/notification/snack_bar_widget.dart';
 import 'package:tracking_user/widgets/planification/showCupertinoDatePicker.dart';
+import 'package:tracking_user/widgets/sav/sav_ticket_item.dart';
 
-class ClientInfoModalWidget extends StatelessWidget {
-  final Affectations affectation;
+import '../../pages/clients_sav/declaration_sav_page.dart';
+
+class ClientSavInfoModalWidget extends StatelessWidget {
+  final SavTicket affectation;
 
   final bool withPlanification;
 
-  const ClientInfoModalWidget(
+  const ClientSavInfoModalWidget(
       {super.key, required this.affectation, required this.withPlanification});
 
   @override
@@ -88,7 +91,7 @@ class ClientInfoModalWidget extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: AffectationItemWidget(
+                      child: SavTicketItem(
                         affectation: affectation,
                         showInfoIcon: false,
                       ),
@@ -103,34 +106,6 @@ class ClientInfoModalWidget extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        affectation.client!.blocage!.isEmpty
-                            ? const SizedBox()
-                            : Visibility(
-                                visible: affectation.status == 'Bloqué',
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Type de blocage",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 21.sp),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                        affectation.client!.blocage!.first.cause
-                                            .toString(),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16.sp,
-                                            color: Colors.red)),
-                                    const SizedBox(
-                                      height: 25,
-                                    )
-                                  ],
-                                ),
-                              ),
                         // Visibility(
                         //   visible: !withPlanification &&
                         //       affectation.status != 'Bloqué' &&
@@ -167,60 +142,7 @@ class ClientInfoModalWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Type d'installation",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 21.sp),
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text('${affectation.client!.offre}',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 16.sp,
-                                        )),
-                                  ],
-                                ),
-                              ],
-                            ),
                             SizedBox(width: 25.w),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Type de routeur",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 21.sp),
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text('${affectation.client!.routeurType}',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 16.sp,
-                                        )),
-                                    Text(
-                                      ' ( ${affectation.client!.debit} MB )',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.red,
-                                          fontSize: 16.sp),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
                           ],
                         ),
 
@@ -324,54 +246,6 @@ class ClientInfoModalWidget extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 15.w,
-                        ),
-                        Text(
-                          "Position GPS",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 21.sp),
-                        ),
-                        SizedBox(
-                          height: 7.w,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                                '${affectation.client!.lat ?? ''},${affectation.client!.lng ?? ''}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 16.sp,
-                                )),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            IconButton(
-                              padding: EdgeInsets.zero,
-                              icon: const IconCercleWidgt(
-                                icon: Icons.copy_all_outlined,
-                                size: 50,
-                              ),
-                              onPressed: () {
-                                Clipboard.setData(ClipboardData(
-                                        text:
-                                            '${affectation.client!.lat ?? ''},${affectation.client!.lng ?? ''}'))
-                                    .then((_) {
-                                  SncakBarWidgdet.snackBarSucces(
-                                      context, "Copier avec succès");
-                                });
-
-                                // final Uri telLaunchUri = Uri(
-                                //   scheme: 'tel',
-                                //   path: affectation.client!.phoneNo ?? '',
-                                // );
-
-                                // launchUrl(telLaunchUri);
-                              },
-                            ),
-                          ],
-                        ),
                       ],
                     ),
                     Padding(
@@ -435,11 +309,15 @@ class ClientInfoModalWidget extends StatelessWidget {
                                     text: "Déclarer",
                                     onTap: () {
                                       context.pop();
-                                      context.pushNamed(routeDeclarationPage,
-                                          params: {
-                                            'affectation': json
-                                                .encode(affectation.toJson())
-                                          });
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DeclarationSavPage(
+                                                  affectation: affectation,
+                                                )),
+                                      );
+
                                       // ignore: use_build_context_synchronously
                                     },
                                   ),
@@ -464,34 +342,12 @@ class ClientInfoModalWidget extends StatelessWidget {
                                             leftHanded: false,
                                             backgroundColor: Colors.white,
                                             action: () {
+                                              context.pop();
                                               userProvider
                                                   .checkPermission(context)
                                                   .whenComplete(() {
-                                                affectationProvider
-                                                    .planificationAffectation(
-                                                        context,
-                                                        affectation.id
-                                                            .toString(),
-                                                        affectationProvider
-                                                            .result
-                                                            .toIso8601String(),
-                                                        userProvider.userData!
-                                                            .technicien!.id
-                                                            .toString())
-                                                    .then((value) =>
-                                                        context.pop())
-                                                    .whenComplete(() => {
-                                                          affectationProvider
-                                                              .getAffectationPlanifier(
-                                                                  context,
-                                                                  userProvider
-                                                                      .userData!
-                                                                      .technicienId
-                                                                      .toString()),
-                                                          affectationProvider
-                                                              .getDate(DateTime
-                                                                  .now())
-                                                        });
+                                                affectationProvider.submit(
+                                                    context, affectation);
                                               });
                                             },
                                             use24hFormat: true,
@@ -529,32 +385,16 @@ class ClientInfoModalWidget extends StatelessWidget {
                                     text: "Blocage",
                                     onTap: () {
                                       context.pop();
-                                      context.pushNamed(routeTypeBlocage,
-                                          params: {
-                                            'idAffectation':
-                                                affectation.id.toString()
-                                          });
-                                    },
-                                  ),
-                                ),
-                                Visibility(
-                                  visible: (affectation.status != "En cours" ||
-                                          affectation.status == "Déclaré") &&
-                                      affectation.status != "Planifié" &&
-                                      affectation.status != "Terminé" &&
-                                      affectation.status != "Bloqué",
-                                  child: IconBottonWidget(
-                                    icon: IconlyLight.tick_square,
-                                    text: " Valider ",
-                                    onTap: () {
-                                      context.pop();
-
-                                      context.pushNamed(
-                                          routeOptionValidationPage,
-                                          params: {
-                                            'idAffectation':
-                                                affectation.id.toString()
-                                          });
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                OptionBlocageSavPage(
+                                                  isSav: true,
+                                                  idAffectation:
+                                                      affectation.id.toString(),
+                                                )),
+                                      );
                                     },
                                   ),
                                 ),
