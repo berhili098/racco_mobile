@@ -39,7 +39,7 @@ class FormeDeblocageWidget extends StatelessWidget {
                         deblocageProvider
                             .selectGalleryImages(context)
                             .then((value) {
-                          deblocageProvider.spliterAvantPhoto = value;
+                          deblocageProvider.spliterAvantPhoto =  value;
                           deblocageProvider.changeState();
                         });
                       }, onCameraTap: () {
