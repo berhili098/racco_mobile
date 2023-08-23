@@ -18,7 +18,7 @@
         </intent>
     </queries>
     <application
-        android:label="NewEraConnect"
+        android:label="NewEraConnect Test"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

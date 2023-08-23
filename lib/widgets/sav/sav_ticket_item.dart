@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_user/model/sav_ticket.dart';
 import 'package:tracking_user/widgets/affectations/icon_cercle_widget.dart';
 
+import 'package:intl/intl.dart';
+
 class SavTicketItem extends StatelessWidget {
   final SavTicket affectation;
   final bool showInfoIcon;
@@ -132,6 +134,36 @@ class SavTicketItem extends StatelessWidget {
                     const SizedBox(
                       height: 7,
                     ),
+                    affectation.planificationDate != null
+                        ? Visibility(
+                            visible: affectation.status != 'Bloqué' &&
+                                affectation.status != 'Validé' &&
+                                affectation.status != 'En cours',
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Planifié : ',
+                                  style: TextStyle(
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.black),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    affectation.planificationDate!.isNotEmpty
+                                        ? DateFormat('dd/MM/yyyy HH:mm').format(
+                                            DateTime.parse(
+                                                affectation.planificationDate!))
+                                        : '',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 16.sp, color: Colors.red),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               ),
