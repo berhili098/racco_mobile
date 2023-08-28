@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
@@ -154,30 +155,56 @@ justificationCinController.text =  (validation.cinDescription ??'').isEmpty
   }
 
   Future<Uint8List> selectGalleryImages(BuildContext context) async {
-    final XFile? selectedImages = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-       maxHeight: 480,
-      maxWidth: 640,
-      imageQuality: 100);
+    final XFile? selectedImages = await ImagePicker()
+        .pickImage(source: ImageSource.gallery);
 
     image = File(selectedImages!.path).readAsBytesSync();
+        final f = File(selectedImages.path);
 
+    int sizeInBytes = f.lengthSync();
+    double sizeInMb = sizeInBytes / (700 * 700);
+
+    if (sizeInMb > 2.0) {
+      final imageComressed =
+        comporessImage(File(selectedImages.path).readAsBytesSync());
+        // image = File(selectedImages.path).readAsBytesSync()
+      return imageComressed ; 
+    } else {
+      image = File(selectedImages.path).readAsBytesSync();
+    }
     return image;
   }
 
   Future<Uint8List> selectCameraImages(BuildContext context) async {
-    final XFile? selectedImages = await ImagePicker().pickImage(
-        source: ImageSource.camera,
+    final XFile? selectedImages = await ImagePicker()
+        .pickImage(source: ImageSource.camera);
 
-        maxHeight: 480,
-      maxWidth: 640,
-      imageQuality: 100);
 
-    image = File(selectedImages!.path).readAsBytesSync();
+    final f = File(selectedImages!.path);
+    int sizeInBytes = f.lengthSync();
+    double sizeInMb = sizeInBytes / (700 * 700);
 
-    // imagelist.add(Uint8List.fromList(IMG.encodePng(resized)));
-
+    if (sizeInMb > 2.0) {
+      final imageComressed =
+        comporessImage(File(selectedImages.path).readAsBytesSync());
+        // image = File(selectedImages.path).readAsBytesSync()
+      return imageComressed ; 
+    } else {
+      image = File(selectedImages.path).readAsBytesSync();
+    }
     return image;
+  }
+
+    Future<Uint8List> comporessImage(Uint8List list) async {
+    var result = await FlutterImageCompress.compressWithList(
+      list,
+      minHeight: 800,
+      minWidth: 800,
+      quality: 85,
+      rotate: 0,
+    );
+
+    return result;
   }
 
   Future<void> validationAffectation(BuildContext context, Object data,

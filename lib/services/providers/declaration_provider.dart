@@ -6,8 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
-
-
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:tracking_user/model/declaration.dart';
 import 'package:tracking_user/model/routeur.dart';
 import 'package:tracking_user/routes.dart';
@@ -19,8 +18,7 @@ class DeclarationProvider extends ChangeNotifier {
   final TextEditingController testSignalFoController = TextEditingController();
   final TextEditingController typeDePassageDeCableController =
       TextEditingController();
-  final TextEditingController typeDeRoteurController =
-      TextEditingController();
+  final TextEditingController typeDeRoteurController = TextEditingController();
   final TextEditingController snTelephoneController = TextEditingController();
   final TextEditingController nbrJarretieresController =
       TextEditingController();
@@ -46,8 +44,7 @@ class DeclarationProvider extends ChangeNotifier {
 
   Declaration declaration = Declaration();
 
-
-    String groupValueTypeRoteur = "";
+  String groupValueTypeRoteur = "";
   String groupValueTypePassage = "";
   String groupValueCinClientOption = "le client n'accepte pas";
   String cinDescription = "le client n'accepte pas";
@@ -85,6 +82,7 @@ class DeclarationProvider extends ChangeNotifier {
     groupValueTypePassage = value;
     notifyListeners();
   }
+
   getValueTypeRoteur(String value) {
     typeDeRoteurController.text = value;
     groupValueTypeRoteur = value;
@@ -99,8 +97,9 @@ class DeclarationProvider extends ChangeNotifier {
   setRouteturGponController(String text) {
     routeueGponController.text = text;
     routeueMacController.text =
-        routeurList.where((element) => element.snGpon == text).first.snMac ??'';
-     notifyListeners();
+        routeurList.where((element) => element.snGpon == text).first.snMac ??
+            '';
+    notifyListeners();
   }
 
   setRouteturMacController(String text) {
@@ -156,9 +155,7 @@ class DeclarationProvider extends ChangeNotifier {
     photoFacade2 = declaration.imagePassage2 ?? Uint8List(0);
     photoFacade3 = declaration.imagePassage3 ?? Uint8List(0);
     idDeclaration = declaration.id;
-
     feedbackBO = declaration.feedbackBO ?? '';
-
     testSignalFoController.text = declaration.testSignal ?? '';
     typeDePassageDeCableController.text = declaration.typePassage ?? '';
     snTelephoneController.text = declaration.snTelephone ?? '';
@@ -212,7 +209,6 @@ class DeclarationProvider extends ChangeNotifier {
 
   late Response response;
   bool loading = false;
-
   String bareCode = '';
   String routeurId = '';
 
@@ -227,30 +223,33 @@ class DeclarationProvider extends ChangeNotifier {
   }
 
   Future<Uint8List> selectCameraImages(BuildContext context) async {
-    final XFile? selectedImages = await ImagePicker().pickImage(
-        source: ImageSource.camera,
-  maxHeight: 480,
-      maxWidth: 640,
-      imageQuality: 100);
+    final XFile? selectedImages =
+        await ImagePicker().pickImage(source: ImageSource.camera);
 
-    image = File(selectedImages!.path).readAsBytesSync();
+    final image = comporessImage(File(selectedImages!.path).readAsBytesSync());
 
     return image;
   }
 
   Future<Uint8List> selectGalleryImages(BuildContext context) async {
-    final XFile? selectedImages = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-  maxHeight: 480,
-      maxWidth: 640,
-      imageQuality: 100
-        
-        
-        );
+    final XFile? selectedImages =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    image = File(selectedImages!.path).readAsBytesSync();
+    final image = comporessImage(File(selectedImages!.path).readAsBytesSync());
 
     return image;
+  }
+
+  Future<Uint8List> comporessImage(Uint8List list) async {
+    var result = await FlutterImageCompress.compressWithList(
+      list,
+      minHeight: 800,
+      minWidth: 800,
+      quality: 85,
+      rotate: 0,
+    );
+
+    return result;
   }
 
   Future<void> declarationAffectation(
@@ -270,7 +269,6 @@ class DeclarationProvider extends ChangeNotifier {
           initValue();
           SncakBarWidgdet.snackBarSucces(
               context, "Client déclarer avec succée");
-
 
           context.pushReplacementNamed(routeOptionValidationPage,
               params: {'idAffectation': idAffectation});
@@ -356,7 +354,6 @@ class DeclarationProvider extends ChangeNotifier {
   Future<String> addRouteur(Object data) async {
     loading = false;
 
-    
     try {
       loading = true;
       notifyListeners();
@@ -399,7 +396,7 @@ class DeclarationProvider extends ChangeNotifier {
     loading = true;
     notifyListeners();
     response = await affectationsApi.getRouteurs();
-    
+
     switch (response.statusCode) {
       case 200:
         routeurList.clear();
