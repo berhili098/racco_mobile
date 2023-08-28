@@ -12,13 +12,16 @@ class HomerdWidget extends StatelessWidget {
 
   final IconData icon;
   const HomerdWidget(
-      {super.key, required this.title, this.onTap, required this.icon , this.showNumber = false });
+      {super.key,
+      required this.title,
+      this.onTap,
+      required this.icon,
+      this.showNumber = false});
 
   @override
   Widget build(BuildContext context) {
     final clientProvider = Provider.of<ClientProvider>(context);
-        final affectationProvider = Provider.of<AffectationProvider>(context);
-
+    final affectationProvider = Provider.of<AffectationProvider>(context);
 
     return Padding(
       padding: EdgeInsets.only(top: 20.w),
@@ -62,9 +65,6 @@ class HomerdWidget extends StatelessWidget {
               ),
               Row(
                 children: [
-
-
-
                   Visibility(
                     visible: showNumber,
                     child: Stack(
@@ -75,7 +75,9 @@ class HomerdWidget extends StatelessWidget {
                             width: 29.w,
                             child:
                                 SvgPicture.asset('assets/icons/home/card.svg')),
-                        Text(affectationProvider.affectationsPromoteur.length.toString(),
+                        Text(
+                            affectationProvider.affectationsPromoteur.length
+                                .toString(),
                             style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w700,

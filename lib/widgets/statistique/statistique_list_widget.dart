@@ -324,6 +324,7 @@ class StatistiqueListWidget extends StatelessWidget {
                             onTap: () => context.push(routeHistoriquePage),
                             icon: Icons.history_outlined,
                           ),
+                          55.verticalSpace,
                         ],
                       ),
                     )
