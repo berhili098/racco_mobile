@@ -13,8 +13,7 @@ import '../../widgets/notification/snack_bar_widget.dart';
 class DeclarationSavProvider extends ChangeNotifier {
   bool loading = false;
   TextEditingController descriptionController = TextEditingController();
-  Uint8List image = Uint8List(0);
-
+  Uint8List image = Uint8List(0); 
   Uint8List imageTestSignal = Uint8List(0);
   Uint8List imageBlockage = Uint8List(0);
 

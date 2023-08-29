@@ -80,6 +80,7 @@ dependencies:
   permission_handler: ^10.2.0
   rename: ^2.1.1
   flutter_image_compress: 
+  animated_custom_dropdown: ^1.5.0
  
   
 

@@ -102,7 +102,7 @@ class TypeBlocageWidget extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 20.0, left: 10, right: 10),
           child: ButtonSendWidget(
             onPressed: () async {
-              if (isSav == true || isSav != null) {
+              if (isSav == true) {
                 blocageProvider.validate(context).then((val) {
                   if (val) {
                     Navigator.push(
