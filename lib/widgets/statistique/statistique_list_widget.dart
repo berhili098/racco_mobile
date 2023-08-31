@@ -184,54 +184,63 @@ class StatistiqueListWidget extends StatelessWidget {
                           DemandeClientWidget(
                             title: "Demander des clients",
                             onTap: () async {
-                              if (affectationProvider.conterCheckCaptcha ==
-                                  affectationProvider.conterCheckCaptchaShow) {
-                                showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    isDismissible: true,
-                                    enableDrag: false,
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(25.0),
-                                            topRight: Radius.circular(25.0))),
-                                    context: context,
-                                    builder: (context) {
-                                      return const CaptchaWidget();
-                                    });
+                              if (userProvider.userData!.technicien!.typeTech ==
+                                  2) {
+                                SncakBarWidgdet.snackBarSucces(context,
+                                    "Vous ne pouvez pas demander un client .");
                               } else {
-                                affectationProvider.incrementConter();
+                                if (affectationProvider.conterCheckCaptcha ==
+                                    affectationProvider
+                                        .conterCheckCaptchaShow) {
+                                  showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      isDismissible: true,
+                                      enableDrag: false,
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(25.0),
+                                              topRight: Radius.circular(25.0))),
+                                      context: context,
+                                      builder: (context) {
+                                        return const CaptchaWidget();
+                                      });
+                                } else {
+                                  affectationProvider.incrementConter();
 
-                                userProvider
-                                    .checkPermission(context)
-                                    .whenComplete(() async {
-                                  if (affectationProvider.affectations.length <
-                                      3) {
-                                    await clientProvider.getClients(
-                                        context,
-                                        userProvider.latLngUser,
-                                        userProvider.userData!.technicienId
-                                            .toString(),
-                                        affectationProvider.affectations.length,
-                                        userProvider
-                                            .userData!.technicien!.cityId!,
-                                        userProvider.nbBuild);
+                                  userProvider
+                                      .checkPermission(context)
+                                      .whenComplete(() async {
+                                    if (affectationProvider
+                                            .affectations.length <
+                                        3) {
+                                      await clientProvider.getClients(
+                                          context,
+                                          userProvider.latLngUser,
+                                          userProvider.userData!.technicienId
+                                              .toString(),
+                                          affectationProvider
+                                              .affectations.length,
+                                          userProvider
+                                              .userData!.technicien!.cityId!,
+                                          userProvider.nbBuild);
 
-                                    Future.delayed(const Duration(seconds: 2),
-                                        () {
-                                      affectationProvider
-                                          .getAffectationTechnicien(
-                                              context,
-                                              userProvider
-                                                  .userData!.technicienId
-                                                  .toString())
-                                          .whenComplete(() =>
-                                              clientProvider.stopLoading());
-                                    });
-                                  } else {
-                                    SncakBarWidgdet.snackBarSucces(context,
-                                        "Vous ne pouvez pas ajouter plus d'un client.");
-                                  }
-                                });
+                                      Future.delayed(const Duration(seconds: 2),
+                                          () {
+                                        affectationProvider
+                                            .getAffectationTechnicien(
+                                                context,
+                                                userProvider
+                                                    .userData!.technicienId
+                                                    .toString())
+                                            .whenComplete(() =>
+                                                clientProvider.stopLoading());
+                                      });
+                                    } else {
+                                      SncakBarWidgdet.snackBarSucces(context,
+                                          "Vous ne pouvez pas ajouter plus d'un client.");
+                                    }
+                                  });
+                                }
                               }
                             },
                           ),

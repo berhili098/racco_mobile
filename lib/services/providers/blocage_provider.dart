@@ -101,7 +101,7 @@ class BlocageProvider extends ChangeNotifier {
     var headers = {'Accept': 'application/json'};
     Uri uri = Uri.parse('$savUrl/addFeedbackBlockage');
     try {
-      http.post(uri, headers: headers, body: data);
+      await http.post(uri, headers: headers, body: data);
       return true;
     } catch (e) {
       print(e.toString());

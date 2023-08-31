@@ -456,11 +456,9 @@ class UserProvider extends ChangeNotifier {
     response = await userApi.deconnectUserService(userId);
 
     // try {
-    print('loged ${response.statusCode}');
 
     switch (response.statusCode) {
       case 200:
-        
         break;
 
       case 401:
@@ -515,7 +513,6 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
 
     response = await userApi.loginService(email, password);
-
     switch (response.statusCode) {
       case 200:
         User user = User.fromJson(jsonDecode(response.body)["User"]);

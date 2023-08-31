@@ -45,8 +45,7 @@ class AffectationProvider extends ChangeNotifier {
     try {
       http.post(uri, headers: headers, body: data);
       return true;
-    } catch (e) {
-      print(e.toString());
+    } catch (e) { 
       return false;
     }
   }
@@ -57,7 +56,7 @@ class AffectationProvider extends ChangeNotifier {
 
     updateDeclarationSav({
       'sav_ticket_id': affectation.id.toString(),
-      'planification_da,te': result.toString()
+      'planification_date': result.toString()
     }).then((value) {
       loading = false;
       notifyListeners();
