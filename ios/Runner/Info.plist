@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
-
-
+		<key>NSSpeechRecognitionUsageDescription</key>
+		<string>This app requires access to speech recognition in order to provide voice control and dictation features. We need to analyze and process your speech to accurately interpret voice commands, transcribe audio input, and enhance your overall user experience.</string>
+		<key>NSAppleMusicUsageDescription</key>
+		<string>Play using while you are hiking</string>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true />
 		<key>CFBundleDisplayName</key>
@@ -78,5 +80,12 @@
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false />
-	</dict>
+		<key>NSContactsUsageDescription</key>
+<string>This app requires access to your contacts in order to provide seamless integration with your address book. We need to access your contacts to allow you to easily invite friends, share content, and communicate with your contacts within the app.</string>
+<key>NSMotionUsageDescription</key>
+<string>This app requires access to motion data in order to provide accurate step counting and activity tracking. The motion data is used to measure your physical activity, calculate calories burned, and offer personalized fitness insights to help you achieve your health and fitness goals.</string>	
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>This app requires access to your location to provide location-based services and enhance your user experience. We use your location to offer personalized recommendations, find nearby points of interest, and provide navigation assistance.</string>
+
+</dict>
 </plist>
