@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 import 'package:tracking_user/model/validation.dart';
 import 'package:tracking_user/routes.dart';
 import 'package:tracking_user/services/affectations_services.dart';
@@ -95,29 +94,20 @@ class ValidationProvider extends ChangeNotifier {
 
     testDebitFo.text = validation.testDebit ?? '';
 
-justificationCinController.text =  (validation.cinDescription ??'').isEmpty
-    ? listCinOptionClient  .first["description"]
+    justificationCinController.text = (validation.cinDescription ?? '').isEmpty
+        ? listCinOptionClient.first["description"]
+        : validation.cinDescription ?? '';
 
-    :
-    validation.cinDescription ?? '';
+    cinDescription = (validation.cinDescription ?? '').isEmpty
+        ? listCinOptionClient.first["description"]
+        : validation.cinDescription ?? '';
 
-    cinDescription = 
-    (validation.cinDescription ??'').isEmpty
-    ? listCinOptionClient  .first["description"]
-
-    :
-    validation.cinDescription ?? '';
-
-    cinValueSelected = 
-    (validation.cinDescription ??'').isEmpty
-
-    ?
-    -1
-    :
-    
-    listCinOptionClient
-        .where((element) => element["description"] == validation.cinDescription)
-        .first["value"];
+    cinValueSelected = (validation.cinDescription ?? '').isEmpty
+        ? -1
+        : listCinOptionClient
+            .where((element) =>
+                element["description"] == validation.cinDescription)
+            .first["value"];
     check = false;
     update = true;
 
@@ -155,20 +145,20 @@ justificationCinController.text =  (validation.cinDescription ??'').isEmpty
   }
 
   Future<Uint8List> selectGalleryImages(BuildContext context) async {
-    final XFile? selectedImages = await ImagePicker()
-        .pickImage(source: ImageSource.gallery);
+    final XFile? selectedImages =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     image = File(selectedImages!.path).readAsBytesSync();
-        final f = File(selectedImages.path);
+    final f = File(selectedImages.path);
 
     int sizeInBytes = f.lengthSync();
     double sizeInMb = sizeInBytes / (700 * 700);
 
     if (sizeInMb > 2.0) {
       final imageComressed =
-        comporessImage(File(selectedImages.path).readAsBytesSync());
-        // image = File(selectedImages.path).readAsBytesSync()
-      return imageComressed ; 
+          comporessImage(File(selectedImages.path).readAsBytesSync());
+      // image = File(selectedImages.path).readAsBytesSync()
+      return imageComressed;
     } else {
       image = File(selectedImages.path).readAsBytesSync();
     }
@@ -176,9 +166,8 @@ justificationCinController.text =  (validation.cinDescription ??'').isEmpty
   }
 
   Future<Uint8List> selectCameraImages(BuildContext context) async {
-    final XFile? selectedImages = await ImagePicker()
-        .pickImage(source: ImageSource.camera);
-
+    final XFile? selectedImages =
+        await ImagePicker().pickImage(source: ImageSource.camera);
 
     final f = File(selectedImages!.path);
     int sizeInBytes = f.lengthSync();
@@ -186,16 +175,16 @@ justificationCinController.text =  (validation.cinDescription ??'').isEmpty
 
     if (sizeInMb > 2.0) {
       final imageComressed =
-        comporessImage(File(selectedImages.path).readAsBytesSync());
-        // image = File(selectedImages.path).readAsBytesSync()
-      return imageComressed ; 
+          comporessImage(File(selectedImages.path).readAsBytesSync());
+      // image = File(selectedImages.path).readAsBytesSync()
+      return imageComressed;
     } else {
       image = File(selectedImages.path).readAsBytesSync();
     }
     return image;
   }
 
-    Future<Uint8List> comporessImage(Uint8List list) async {
+  Future<Uint8List> comporessImage(Uint8List list) async {
     var result = await FlutterImageCompress.compressWithList(
       list,
       minHeight: 800,

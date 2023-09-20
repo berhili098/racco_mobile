@@ -431,8 +431,10 @@ class DeclarationProvider extends ChangeNotifier {
     // try {
     loading = true;
     notifyListeners();
+    print('hello');
     response = await declarationApi.getDeclaration(id);
 
+    log(response.body);
     switch (response.statusCode) {
       case 200:
         var result = json.decode(response.body)["Declaration"];

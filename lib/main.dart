@@ -9,8 +9,7 @@ import 'package:tracking_user/neweracom.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-//Remove this method to stop OneSignal Debugging
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform); 
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
   OneSignal.shared.setAppId("9d7161b3-0c5e-4dd0-93fa-67e6b57fe2dd");
   OneSignal.shared

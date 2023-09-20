@@ -707,55 +707,55 @@ class AffectationProvider extends ChangeNotifier {
     // return;
   }
 
-  Future<void> planificationAffectation(BuildContext context, String id,
-      String planifierAffectation, String technicienId,
-      {bool callNotify = false}) async {
-    loading = false;
+    Future<void> planificationAffectation(BuildContext context, String id,
+        String planifierAffectation, String technicienId,
+        {bool callNotify = false}) async {
+      loading = false;
 
-    try {
-      loading = true;
-      notifyListeners();
-      response = await affectationsApi.planifierAffectation(
-          id, planifierAffectation, technicienId);
+      try {
+        loading = true;
+        notifyListeners();
+        response = await affectationsApi.planifierAffectation(
+            id, planifierAffectation, technicienId);
 
-      switch (response.statusCode) {
-        case 200:
+        switch (response.statusCode) {
+          case 200:
 
-          // refreshController.loadComplete();
+            // refreshController.loadComplete();
 
-          Future.delayed(Duration.zero).then((value) {
-            removeAffectation(id);
-            increaseConteurUser();
+            Future.delayed(Duration.zero).then((value) {
+              removeAffectation(id);
+              increaseConteurUser();
 
-            loading = false;
-            notifyListeners();
-            SncakBarWidgdet.snackBarSucces(
-                context, "Client planifier avec succée ");
-          });
-          break;
-        case 409:
+              loading = false;
+              notifyListeners();
+              SncakBarWidgdet.snackBarSucces(
+                  context, "Client planifier avec succée ");
+            });
+            break;
+          case 409:
 
-          // refreshController.loadComplete();
+            // refreshController.loadComplete();
 
-          Future.delayed(Duration.zero).then((value) {
-            loading = false;
-            notifyListeners();
-            SncakBarWidgdet.snackBarSucces(
-                context, "Vous avez dépassé la limite de planification.");
-          });
-          break;
-        default:
-        // showSnackBarError('vérifier votre connection internet', context);
+            Future.delayed(Duration.zero).then((value) {
+              loading = false;
+              notifyListeners();
+              SncakBarWidgdet.snackBarSucces(
+                  context, "Vous avez dépassé la limite de planification.");
+            });
+            break;
+          default:
+          // showSnackBarError('vérifier votre connection internet', context);
+        }
+      } on SocketException {
+        // errorInternet = true;
+        notifyListeners();
+
+        // SncakBarWidgdet.snackBarError(context, "client est déclaré en blocage");
+      } catch (e) {
+        // SncakBarWidgdet.snackBarError(context, e.toString());
       }
-    } on SocketException {
-      // errorInternet = true;
-      notifyListeners();
 
-      // SncakBarWidgdet.snackBarError(context, "client est déclaré en blocage");
-    } catch (e) {
-      // SncakBarWidgdet.snackBarError(context, e.toString());
+      return;
     }
-
-    return;
-  }
 }

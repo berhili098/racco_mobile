@@ -97,7 +97,7 @@ class BlocageProvider extends ChangeNotifier {
     }
   }
 
-  Future updateDeclarationSav(Object data) async {
+  Future updateDeclarantionSav(Object data) async {
     var headers = {'Accept': 'application/json'};
     Uri uri = Uri.parse('$savUrl/addFeedbackBlockage');
     try {

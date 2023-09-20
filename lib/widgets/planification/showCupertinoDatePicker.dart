@@ -63,53 +63,46 @@ void showCupertinoDatePicker(
     cancelText = const Icon(CupertinoIcons.clear_circled);
   } else {
     cancelText ??= Text(
-        'Cancel',
-        style: CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
-              fontWeight: FontWeight.w600,
-              color: Colors.red,
-            ),
-      );
+      'Cancel',
+      style: CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
+            fontWeight: FontWeight.w600,
+            color: Colors.red,
+          ),
+    );
   }
 
   if (!useText) {
     doneText = const Icon(CupertinoIcons.check_mark_circled);
   } else {
-
-
-    action ; 
+    action;
     doneText ??= Text(
-        'Save',
-        style: CupertinoTheme.of(context)
-            .textTheme
-            .actionTextStyle
-            .copyWith(fontWeight: FontWeight.w600),
-      );
+      'Save',
+      style: CupertinoTheme.of(context)
+          .textTheme
+          .actionTextStyle
+          .copyWith(fontWeight: FontWeight.w600),
+    );
   }
 
   var cancelButton = CupertinoButton(
     padding: const EdgeInsets.symmetric(horizontal: 15.0),
     child: cancelText,
     onPressed: () {
-
       context.pop();
       onDateTimeChanged(DateTime(0000, 01, 01, 0, 0, 0, 0, 0));
     },
   );
 
   var doneButton = CupertinoButton(
-    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-    child: doneText,
-    onPressed: () {
-
-
-      
-           action!();}
-  );
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: doneText,
+      onPressed: () {
+        action!();
+      });
 
   //
   showCupertinoModalPopup(
     context: context,
-
     builder: (context) => SizedBox(
       height: 240.0,
       child: Column(
@@ -159,7 +152,7 @@ void showCupertinoDatePicker(
     filter: filter,
     useRootNavigator: useRootNavigator,
     semanticsDismissible: semanticsDismissible,
-  ).whenComplete((){
-       context.pop();
+  ).whenComplete(() {
+    context.pop();
   });
 }
