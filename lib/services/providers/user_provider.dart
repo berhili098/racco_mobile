@@ -509,13 +509,15 @@ class UserProvider extends ChangeNotifier {
 
   login(String email, String password, BuildContext context) async {
     Response response;
-    loading = true;
-    notifyListeners();
+    // loading = true;
+    // notifyListeners();
 
     response = await userApi.loginService(email, password);
     switch (response.statusCode) {
       case 200:
         User user = User.fromJson(jsonDecode(response.body)["User"]);
+
+        log(user.toJson().toString());
 
         await OneSignal.shared.getDeviceState().then((value) {
           updatePlayerId(
@@ -588,10 +590,14 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future<void> logOut(String userId, BuildContext context) async {
+    context.go('/');
+
     await dropSessionUser();
     await checkUserAuth();
-    logged = false;
+
     deconnectUser(userId);
+    logged = false;
+
     notifyListeners();
   }
 

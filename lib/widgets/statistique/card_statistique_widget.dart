@@ -63,7 +63,7 @@ class CardStatistiqueWidget extends StatelessWidget {
                             child: Text(
                               title,
                               style: TextStyle(
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w700,
                                   fontSize: 20.sp,
                                   color: Colors.black),
                             ),

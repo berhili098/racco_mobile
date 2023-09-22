@@ -36,6 +36,8 @@ class ButtonDeclarationWidget extends StatelessWidget {
       height: 53.h,
       child: ElevatedButton(
         style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all(Theme.of(context).primaryColor),
           elevation: MaterialStateProperty.all(8),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
@@ -47,7 +49,7 @@ class ButtonDeclarationWidget extends StatelessWidget {
         ),
         onPressed: () {
           userProvider.checkPermission(context).whenComplete(() {
-           if (!declarationProvider.formKey.currentState!.validate() ||
+            if (!declarationProvider.formKey.currentState!.validate() ||
                 declarationProvider.imageTestSignalFo.isEmpty ||
                 declarationProvider.photoPboAvant.isEmpty ||
                 declarationProvider.photoPboApres.isEmpty ||
@@ -125,8 +127,8 @@ class ButtonDeclarationWidget extends StatelessWidget {
                                 declarationProvider.cableMetreController.text,
                             'pto': declarationProvider.ptoController.text,
                             'routeur_id': value,
-                            'routeur_type': declarationProvider.typeDeRoteurController.text,
-                    
+                            'routeur_type':
+                                declarationProvider.typeDeRoteurController.text,
                             'lat': userProvider.latLngUser.latitude.toString(),
                             'lng': userProvider.latLngUser.longitude.toString()
                           },
@@ -150,7 +152,8 @@ class ButtonDeclarationWidget extends StatelessWidget {
                             'affectation_id': affectation.id.toString(),
                             'test_signal':
                                 declarationProvider.testSignalFoController.text,
-                            'image_test_signal': base64Encode(declarationProvider.imageTestSignalFo),
+                            'image_test_signal': base64Encode(
+                                declarationProvider.imageTestSignalFo),
                             'image_pbo_before':
                                 base64Encode(declarationProvider.photoPboAvant),
                             'image_pbo_after':
@@ -173,7 +176,8 @@ class ButtonDeclarationWidget extends StatelessWidget {
                                 declarationProvider.sNController.text,
                             'nbr_jarretieres': declarationProvider
                                 .nbrJarretieresController.text,
-                            'cable_metre':declarationProvider.cableMetreController.text,
+                            'cable_metre':
+                                declarationProvider.cableMetreController.text,
                             'pto': declarationProvider.ptoController.text,
                             'image_cin':
                                 base64Encode(declarationProvider.imageCin),
@@ -181,7 +185,8 @@ class ButtonDeclarationWidget extends StatelessWidget {
                                 .justificationCinController.text,
                             'cin_description':
                                 declarationProvider.groupValueCinClientOption,
-                            'routeur_type': declarationProvider.typeDeRoteurController.text,
+                            'routeur_type':
+                                declarationProvider.typeDeRoteurController.text,
                             'routeur_id': value,
                             'lat': userProvider.latLngUser.latitude.toString(),
                             'lng': userProvider.latLngUser.longitude.toString()

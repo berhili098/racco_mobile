@@ -36,9 +36,11 @@ class ButtonValidationWidget extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(
           elevation: MaterialStateProperty.all(8),
+          backgroundColor:
+              MaterialStateProperty.all(Theme.of(context).primaryColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(13.0), // radius you want
+            borderRadius: BorderRadius.circular(13.0),
             side: const BorderSide(
               color: Colors.transparent,
             ),
@@ -50,9 +52,6 @@ class ButtonValidationWidget extends StatelessWidget {
                 // validationProvider.testDebitViaCableImg.isEmpty ||
                 validationProvider.photoTestDebitViaWifiImg.isEmpty ||
                 validationProvider.etiquetageImg.isEmpty ||
-      
-
-              
                 validationProvider.pV.isEmpty ||
                 validationProvider.routeurTel.isEmpty) {
               validationProvider.formKey.currentState!.reset();
@@ -61,22 +60,12 @@ class ButtonValidationWidget extends StatelessWidget {
 
               SncakBarWidgdet.snackBarSucces(
                   context, "Tous les champs sont obligatoire *");
-            }else if((validationProvider.cinValueSelected == 1|| validationProvider.cinValueSelected == 1)
-            && validationProvider.cinImage.isEmpty
-            )
-
-            {
-  SncakBarWidgdet.snackBarSucces(
+            } else if ((validationProvider.cinValueSelected == 1 ||
+                    validationProvider.cinValueSelected == 1) &&
+                validationProvider.cinImage.isEmpty) {
+              SncakBarWidgdet.snackBarSucces(
                   context, "Photo CIN est obligatoire *");
-            } 
-            
-            else {
-
-
-
-
-
-
+            } else {
               // validationProvider.formKey.currentState!.reset();
               if (validationProvider.update) {
                 validationProvider.updateValidtion(context, {
@@ -96,8 +85,6 @@ class ButtonValidationWidget extends StatelessWidget {
                   'cin_justification':
                       validationProvider.justificationCinController.text,
                   'cin_description': validationProvider.cinDescription,
-
-
                   'router_tel_image':
                       base64Encode(validationProvider.routeurTel),
                   'lat': userProvider.latLngUser.latitude.toString(),

@@ -69,7 +69,6 @@ class FormsBlocageClientWidget extends StatelessWidget {
               )),
             ),
           ),
-
           Expanded(
             child: blocageProvider.checkValueBlocageClient.isEmpty
                 ? Center(
@@ -81,17 +80,18 @@ class FormsBlocageClientWidget extends StatelessWidget {
                         text: "Choisir le type de blocage",
                         onTap: () => context.push(routeTypeBlocage),
                       )
-
-                      // Text(
-                      //   "Choisir le type de blocage !",
-                      //   style: TextStyle(
-                      //       fontWeight: FontWeight.w600, fontSize: 20.sp),
-                      // ),
                     ],
                   ))
                 : ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     children: [
+                      Visibility(
+                        visible: blocageProvider.checkValueBlocageClient ==
+                            BlocageClient.signalDegrade.name,
+                        child: const ImagePickerBlocageWidget(
+                            titel: 'Choisir une photo boite',
+                            imageTitle: "Photo de boite"),
+                      ),
                       blocageProvider.checkValueBlocageClient ==
                                   BlocageClient.adresseErroneDeploye.name ||
                               blocageProvider.checkValueBlocageClient ==
@@ -220,7 +220,9 @@ class FormsBlocageClientWidget extends StatelessWidget {
                                   blocageProvider.checkValueBlocageClient)
                           : const SizedBox(),
                       blocageProvider.checkValueBlocageTechnicien ==
-                              BlocageClient.pasSignal.name
+                                  BlocageClient.pasSignal.name ||
+                              blocageProvider.checkValueBlocageClient ==
+                                  BlocageClient.signalDegrade.name
                           ? const ImagePickerBlocageWidget(
                               titel: 'Choisir une photo signal',
                               imageTitle: "Photo signal")
@@ -245,7 +247,7 @@ class FormsBlocageClientWidget extends StatelessWidget {
                           readOnly: false,
                           controller: blocageProvider.adresseLinkController,
                           onChanged: (value) {
-                            // 
+                            //
                           },
                         ),
                       ),
@@ -340,7 +342,9 @@ class FormsBlocageClientWidget extends StatelessWidget {
                         blocageProvider.checkValueBlocageClient ==
                             BlocageClient.adresseErroneNonDeploye.name ||
                         blocageProvider.checkValueBlocageClient ==
-                            BlocageClient.problemeVerticalite.name) {
+                            BlocageClient.problemeVerticalite.name ||
+                        blocageProvider.checkValueBlocageClient ==
+                            BlocageClient.signalDegrade.name) {
                       if (blocageProvider.imageList.length < 2) {
                         SncakBarWidgdet.snackBarError(
                             context, "Les images sont obligatoire  !");
@@ -433,7 +437,9 @@ class FormsBlocageClientWidget extends StatelessWidget {
                         blocageProvider.checkValueBlocageClient ==
                             BlocageClient.blocageBesoinJartterier.name ||
                         blocageProvider.checkValueBlocageClient ==
-                            BlocageClient.blocageSwan.name) {
+                            BlocageClient.blocageSwan.name ||
+                        blocageProvider.checkValueBlocageClient ==
+                            BlocageClient.blocageManqueCarteNationel.name) {
                       blocageProvider
                           .declarationBlocage(
                               context,

@@ -13,6 +13,7 @@ import 'package:tracking_user/services/providers/declaration_provider.dart';
 import 'package:tracking_user/services/providers/declaration_sav_provider.dart';
 import 'package:tracking_user/services/providers/user_provider.dart';
 import 'package:tracking_user/services/providers/validation_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NewEraCom extends StatefulWidget {
   const NewEraCom({super.key});
@@ -69,11 +70,11 @@ class _NewEraComState extends State<NewEraCom> with WidgetsBindingObserver {
           builder: (context, child) {
             return MaterialApp.router(
                 theme: ThemeData(
+                    primaryColor: Palette.kToDark,
                     primarySwatch: Palette.kToDark,
                     scaffoldBackgroundColor: Palette.bgColor,
-                    textTheme: Theme.of(context).textTheme.apply(
-                          // fontFamily: 'Lexend',
-                        ),
+                    textTheme: GoogleFonts.dmSansTextTheme(),
+                    useMaterial3: true,
                     buttonTheme: const ButtonThemeData(
                       buttonColor: Palette.kToDark,
                       textTheme: ButtonTextTheme.primary,
@@ -85,8 +86,6 @@ class _NewEraComState extends State<NewEraCom> with WidgetsBindingObserver {
                 ],
                 supportedLocales: const [Locale('fr', 'FR')],
                 debugShowCheckedModeBanner: false,
-                // routeInformationParser: router.routeInformationParser,
-                // routerDelegate: router.routerDelegate,
                 routerConfig: router);
           }),
     );
