@@ -90,7 +90,7 @@ class AffectationProvider extends ChangeNotifier {
     indexTab = index;
   }
 
-  RefreshController refreshController =
+  final RefreshController refreshController =
       RefreshController(initialRefresh: false);
 
   AffectationsApi affectationsApi = AffectationsApi();

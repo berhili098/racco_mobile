@@ -135,40 +135,24 @@ final router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return const LoginPage();
       },
-  
+
       redirect: (context, state) async {
-        final userProvider = Provider.of<UserProvider>(context);
+        final userProvider = Provider.of<UserProvider>(context, listen: false);
 
         userProvider.getLocation(context);
 
-
-        if (await userProvider.checkUserAuth() == true ) {
+        if (await userProvider.checkUserAuth() == true) {
           return '/home';
         }
 
-        // if (userProvider.logged == false) {
-        //   return '/';
-        // }
-
-        // Check if user is logged in
         return '/';
       },
-      // => MaterialPage(
-      //       key: state.pageKey,
-      //       child: const LoginPage(),
-      //     ), // MaterialPage
     ),
     GoRoute(
       path: '/home',
-
       builder: (BuildContext context, GoRouterState state) {
         return const HomePage();
       },
-
-      // pageBuilder: (context, state) => MaterialPage(
-      //   key: state.pageKey,
-      //   child: const HomePage(),
-      // ),
     ),
     GoRoute(
       path: '/permission',
@@ -249,17 +233,17 @@ final router = GoRouter(
         path: routeAffectations,
         pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
-              child: const  ClientPage(),
+              child: const ClientPage(),
             ),
         routes: routeAffectationsList),
     GoRoute(
-        name: routePromoteur,
-        path: routePromoteur,
-        pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              child:const  PromoteurPage(),
-            ),
-),
+      name: routePromoteur,
+      path: routePromoteur,
+      pageBuilder: (context, state) => MaterialPage(
+        key: state.pageKey,
+        child: const PromoteurPage(),
+      ),
+    ),
     GoRoute(
       name: routeTypeBlocage,
       path: routeTypeBlocage,

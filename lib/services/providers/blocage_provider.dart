@@ -30,6 +30,7 @@ class BlocageProvider extends ChangeNotifier {
   String checkValueBlocageClient = '';
   String checkValueBlocageValidatinClient = '';
   String checkValueBlocageTechnicien = '';
+
   BlocageValidationClient? typeBlocage;
 
   Uint8List screenOgif = Uint8List(0);
@@ -123,6 +124,8 @@ class BlocageProvider extends ChangeNotifier {
 
   checlValueTypeBlocage(BlocageClient value) {
     checkValueBlocageClient = value.name;
+
+    print(checkValueBlocageClient);
 
     notifyListeners();
   }
@@ -369,6 +372,12 @@ class BlocageProvider extends ChangeNotifier {
       case BlocageClient.problemeVerticalite:
         result = "Probléme de verticalité";
         break;
+      case BlocageClient.blocageManqueCarteNationel:
+        result = "Manque carte nationale";
+        break;
+      case BlocageClient.signalDegrade:
+        result = "Signal Dégrade";
+        break;
 
       default:
         result = "";
@@ -556,6 +565,8 @@ enum BlocageClient {
   blocageBdc,
   blocageSwan,
   blocageBesoinJartterier,
+  blocageManqueCarteNationel,
+  signalDegrade
 }
 
 enum BlocageSavClient {

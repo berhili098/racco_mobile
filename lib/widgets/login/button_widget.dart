@@ -18,6 +18,8 @@ class ButtonAuthWiget extends StatelessWidget {
       height: 53.h,
       child: ElevatedButton(
         style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all(Theme.of(context).primaryColor),
           elevation: MaterialStateProperty.all(0),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(

@@ -18,14 +18,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     color: Colors.white,
   );
   @override
-  Size get preferredSize => const Size.fromHeight(100);
+  Size get preferredSize => Size.fromHeight(70.h);
 
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
-        preferredSize: const Size.fromHeight(70.0), // here the desired height
+        preferredSize: const Size.fromHeight(50.0), // here the desired height
         child: ClipPath(
-            clipper: BottomWaveClipper(),
+            // clipper: BottomWaveClipper(),
             child: AppBar(
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
@@ -50,6 +50,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 23.sp,
+                      color: Colors.white,
                       fontFamily: 'Lexend'),
                 ),
                 flexibleSpace: Container(
