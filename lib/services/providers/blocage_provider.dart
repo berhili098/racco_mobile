@@ -112,11 +112,21 @@ class BlocageProvider extends ChangeNotifier {
   setValueTypeBlocage(BlocageClient value) {
     typeBlocageController.text = getStringFromSwitch(value);
     groupValue = getStringFromSwitch(value);
+    notifyListeners();
+  }
 
+  setValueTypeBlocageSav(BlocageSavClient value) {
+    typeBlocageController.text = getStringFromSwitchSav(value);
+    groupValue = getStringFromSwitchSav(value);
     notifyListeners();
   }
 
   checlValueTypeBlocage(BlocageClient value) {
+    checkValueBlocageClient = value.name;
+
+    notifyListeners();
+  }
+  checlValueTypeBlocageSav(BlocageSavClient value) {
     checkValueBlocageClient = value.name;
 
     notifyListeners();
@@ -237,6 +247,50 @@ class BlocageProvider extends ChangeNotifier {
             ));
   }
 
+  String getStringFromSwitchSav(BlocageSavClient value) {
+    String result;
+    switch (value) {
+      case BlocageSavClient.signalTransport:
+        result = "Signal Transport";
+        break;
+
+      case BlocageSavClient.blocagePassage:
+        result = "Blocage de passage";
+        break;
+      case BlocageSavClient.blocagePassageCoteSyndic:
+        result = "Blocage coté Syndic";
+        break;
+      case BlocageSavClient.clientAnnuleSaDemande:
+        result = "Client a annulé sa demande";
+        break;
+      case BlocageSavClient.contactErronee:
+        result = "Contact Erronee";
+        break;
+
+      case BlocageSavClient.horsPlaque:
+        result = "Hors Plaque";
+        break;
+      case BlocageSavClient.indisponible:
+        result = "Indisponible";
+        break;
+      case BlocageSavClient.injoignableSMS:
+        result = "Injoignable/SMS";
+        break;
+
+      case BlocageSavClient.blocageSwan:
+        result = "Besoin Swan";
+        break;
+      case BlocageSavClient.blocageBesoinJartterier:
+        result = "Besoin jarretière";
+        break;
+
+      default:
+        result = "";
+        break;
+    }
+    return result;
+  }
+
   String getStringFromSwitch(BlocageClient value) {
     String result;
 
@@ -244,6 +298,7 @@ class BlocageProvider extends ChangeNotifier {
       case BlocageClient.adresseErroneDeploye:
         result = "Adresse erronée déployée";
         break;
+
       case BlocageClient.adresseErroneNonDeploye:
         result = "Adresse erronée non déployée";
         break;
@@ -499,6 +554,19 @@ enum BlocageClient {
   pasSignal,
   problemeVerticalite,
   blocageBdc,
+  blocageSwan,
+  blocageBesoinJartterier,
+}
+
+enum BlocageSavClient {
+  blocagePassageCoteSyndic,
+  clientAnnuleSaDemande,
+  contactErronee,
+  horsPlaque,
+  indisponible,
+  injoignableSMS,
+  blocagePassage,
+  signalTransport,
   blocageSwan,
   blocageBesoinJartterier,
 }

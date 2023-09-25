@@ -72,7 +72,7 @@ class _NewEraComState extends State<NewEraCom> with WidgetsBindingObserver {
                     primarySwatch: Palette.kToDark,
                     scaffoldBackgroundColor: Palette.bgColor,
                     textTheme: Theme.of(context).textTheme.apply(
-                          // fontFamily: 'Lexend',
+                        // fontFamily: 'Lexend',
                         ),
                     buttonTheme: const ButtonThemeData(
                       buttonColor: Palette.kToDark,
