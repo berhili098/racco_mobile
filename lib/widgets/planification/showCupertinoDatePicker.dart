@@ -151,7 +151,7 @@ void showCupertinoDatePicker(
     ),
     filter: filter,
     useRootNavigator: useRootNavigator,
-    semanticsDismissible: semanticsDismissible!,
+    semanticsDismissible: true,
   ).whenComplete(() {
     context.pop();
   });
