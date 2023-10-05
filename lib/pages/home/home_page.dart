@@ -69,8 +69,8 @@ class _HomePageState extends State<HomePage> {
         clientProvider.createLogTechnicien({
           "technicien_id": userProvider.userData!.technicien!.id.toString(),
           "nb_affectation": "500",
-          "lat": userProvider.latLngUser.latitude.toString(),
-          "lng": userProvider.latLngUser.longitude.toString(),
+          "lat": userProvider.latLngUser!.latitude.toString(),
+          "lng": userProvider.latLngUser!.longitude.toString(),
           "build": userProvider.nbBuild
         });
 

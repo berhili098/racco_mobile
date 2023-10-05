@@ -292,6 +292,8 @@ class FormsBlocageClientWidget extends StatelessWidget {
                         SncakBarWidgdet.snackBarError(
                             context, "Les images sont obligatoire !");
                       } else {
+                        userProvider.latLngUser ?? 
+                        print(userProvider.latLngUser.latitude.toString());
                         blocageProvider
                             .declarationBlocage(
                                 context,
