@@ -22,469 +22,488 @@ class FormValidationWidget extends StatelessWidget {
 
     return Form(
       key: validationProvider.formKey,
-      child: Column(
-        children: [
-
-          Visibility(
-            visible: validationProvider.feedbackBO.isNotEmpty,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    color: Colors.grey.shade400,
-                    width: MediaQuery.of(context).size.width,
-                    height: 1,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text("* Champs a modifié :  ",
-                      style: TextStyle(
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.red)),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(validationProvider.feedbackBO,
-                      style: TextStyle(
-                          fontSize: 17.sp, fontWeight: FontWeight.w400)),
-                  const SizedBox(height: 15),
-                  Container(
-                    color: Colors.grey.shade400,
-                    width: MediaQuery.of(context).size.width,
-                    height: 1,
-                  )
-                ],
-              ),
+      child: Container(
+        margin: const EdgeInsets.all(6),
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5), // Shadow color
+              spreadRadius: 5, // Spread radius
+              blurRadius: 7, // Blur radius
+              offset: const Offset(0, 3), // Offset from the top
             ),
+          ],
+          color: Colors.grey.shade300,
+          borderRadius: BorderRadius.circular(5), // Adjust the radius as needed
+          border: Border.all(
+            color: Colors.grey.shade300, // Border color
+            width: 2.0, // Border width
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-
-                            Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FieldDeclarationWidget(
-              validator: (val) {
-                if (val!.isEmpty) {
-                  validationProvider.validationInput(val);
-
-                  return 'Le champ est obligatoire *';
-                }
-                return null;
-              },
-              controller: TextEditingController(
-                  text: validationProvider.cinDescription),
-              readOnly: true,
-              hint: "Prenez une photo recto de la CIN du client",
-              onTap: () {
-                context.push(routeOptionCinPage);
-              },
-              title: 'CIN client',
-              keyboardType:
-                  TextInputType.number, // This sets the keyboard to numeric
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
-                // MaxValueTextInputFormatter(
-                //     2)
-              ],
-            ),
-          ),
-          Visibility(
-            visible: validationProvider.cinValueSelected == 0,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FieldDescriptionWidget(
-                readOnly: false,
-                hint: "Justification",
-                validator: (val) {
-                  if (val!.isEmpty &&
-                      validationProvider.cinValueSelected == 0) {
-                    validationProvider.validationInput(val);
-
-                    return 'Le champ est obligatoire *';
-                  }
-                  return null;
-                },
-                controller: validationProvider.justificationCinController,
-                title: 'CIN client justification ',
-              ),
-            ),
-          ),
-         
-          Visibility(
-            visible: validationProvider.cinValueSelected == 1 ||
-                validationProvider.cinValueSelected == 2,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ImagePickerWidget(
-                titel: 'Photo CIN client recto',
-                onTap: () async {
-                  FocusScope.of(context).requestFocus(FocusNode());
-
-                  showModalBottomSheet(
-                      isScrollControlled: true,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(25.0),
-                              topRight: Radius.circular(25.0))),
-                      context: context,
-                      builder: (context) {
-                        return OptionImage(onGaleryTap: () {
-                          context.pop();
-
-                          validationProvider
-                              .selectGalleryImages(context)
-                              .then((value) {
-                            validationProvider.cinImage = value;
-                            validationProvider.changeState();
-                          });
-                        }, onCameraTap: () {
-                          context.pop();
-
-                          validationProvider
-                              .selectCameraImages(context)
-                              .then((value) {
-                            validationProvider.cinImage = value;
-                            validationProvider.changeState();
-                          });
-                        });
-                      }).whenComplete(() {});
-                },
-                image: validationProvider.cinImage,
-              ),
-            ),
-          ),
-        
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FieldDeclarationWidget(
-                      controller: validationProvider.testDebitFo,
-                      readOnly: false,
-                      //  onTap: (){
-                      //   context.push(routeOptionPage);
-                      //  },
-                      validator: (val) {
-                        if (val!.isEmpty) {
-                          return 'Le champ est obligatoire *';
-                        }
-                        return null;
-                      },
-                      title: 'Test_debit_FO :',
-                      keyboardType: TextInputType
-                          .number, // This sets the keyboard to numeric
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly,
-                        MaxValueTextInputFormatter(
-                            200) // set the maximum value to 100
-                      ],
+        ),
+        child: Column(
+          children: [
+            Visibility(
+              visible: validationProvider.feedbackBO.isNotEmpty,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      color: Colors.grey.shade400,
+                      width: MediaQuery.of(context).size.width,
+                      height: 1,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ImagePickerWidget(
-                      titel: 'Test debit via cable img',
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(FocusNode());
-
-                        showModalBottomSheet(
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25.0),
-                                    topRight: Radius.circular(25.0))),
-                            context: context,
-                            builder: (context) {
-                              return OptionImage(onGaleryTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectGalleryImages(context)
-                                    .then((value) {
-                                  validationProvider.testDebitViaCableImg =
-                                      value;
-                                  validationProvider.changeState();
-                                });
-                              }, onCameraTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectCameraImages(context)
-                                    .then((value) {
-                                  validationProvider.testDebitViaCableImg =
-                                      value;
-                                  validationProvider.changeState();
-                                });
-                              });
-                            }).whenComplete(() {});
-                      },
-                      image: validationProvider.testDebitViaCableImg,
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ImagePickerWidget(
-                      titel: 'Photo test debit via Wifi',
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(FocusNode());
-
-                        showModalBottomSheet(
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25.0),
-                                    topRight: Radius.circular(25.0))),
-                            context: context,
-                            builder: (context) {
-                              return OptionImage(onGaleryTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectGalleryImages(context)
-                                    .then((value) {
-                                  validationProvider.photoTestDebitViaWifiImg =
-                                      value;
-                                  validationProvider.changeState();
-                                });
-                              }, onCameraTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectCameraImages(context)
-                                    .then((value) {
-                                  validationProvider.photoTestDebitViaWifiImg =
-                                      value;
-                                  validationProvider.changeState();
-                                });
-                              });
-                            }).whenComplete(() {});
-                      },
-                      image: validationProvider.photoTestDebitViaWifiImg,
+                    Text("* Champs a modifié :  ",
+                        style: TextStyle(
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.red)),
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: ImagePickerWidget(
-                  //     titel: 'Image_Test_Signal_FO ',
-                  //     onTap: () async {
-                  //       FocusScope.of(context).requestFocus(FocusNode());
-
-                  //       showModalBottomSheet(
-                  //           isScrollControlled: true,
-                  //           shape: const RoundedRectangleBorder(
-                  //               borderRadius: BorderRadius.only(
-                  //                   topLeft: Radius.circular(25.0),
-                  //                   topRight: Radius.circular(25.0))),
-                  //           context: context,
-                  //           builder: (context) {
-                  //             return OptionImage(onGaleryTap: () {
-                  //               context.pop();
-
-                  //               validationProvider
-                  //                   .selectGalleryImages(context)
-                  //                   .then((value) {
-                  //                 validationProvider.imageTestDebitFo = value;
-                  //                 validationProvider.changeState();
-                  //               });
-                  //             }, onCameraTap: () {
-                  //               context.pop();
-
-                  //               validationProvider
-                  //                   .selectCameraImages(context)
-                  //                   .then((value) {
-                  //                 validationProvider.imageTestDebitFo = value;
-                  //                 validationProvider.changeState();
-                  //               });
-                  //             });
-                  //           }).whenComplete(() {});
-                  //     },
-                  //     image: validationProvider.imageTestDebitFo,
-                  //   ),
-                  // ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ImagePickerWidget(
-                      titel: 'Routeur/Tel',
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(FocusNode());
-
-                        showModalBottomSheet(
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25.0),
-                                    topRight: Radius.circular(25.0))),
-                            context: context,
-                            builder: (context) {
-                              return OptionImage(onGaleryTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectGalleryImages(context)
-                                    .then((value) {
-                                  validationProvider.routeurTel = value;
-                                  validationProvider.changeState();
-                                });
-                              }, onCameraTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectCameraImages(context)
-                                    .then((value) {
-                                  validationProvider.routeurTel = value;
-                                  validationProvider.changeState();
-                                });
-                              });
-                            }).whenComplete(() {});
-                      },
-                      image: validationProvider.routeurTel,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ImagePickerWidget(
-                      titel: 'Etiquetage',
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(FocusNode());
-
-                        showModalBottomSheet(
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25.0),
-                                    topRight: Radius.circular(25.0))),
-                            context: context,
-                            builder: (context) {
-                              return OptionImage(onGaleryTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectGalleryImages(context)
-                                    .then((value) {
-                                  validationProvider.etiquetageImg = value;
-                                  validationProvider.changeState();
-                                });
-                              }, onCameraTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectCameraImages(context)
-                                    .then((value) {
-                                  validationProvider.etiquetageImg = value;
-                                  validationProvider.changeState();
-                                });
-                              });
-                            }).whenComplete(() {});
-                      },
-                      image: validationProvider.etiquetageImg,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ImagePickerWidget(
-                      titel: 'PV',
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(FocusNode());
-
-                        showModalBottomSheet(
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25.0),
-                                    topRight: Radius.circular(25.0))),
-                            context: context,
-                            builder: (context) {
-                              return OptionImage(onGaleryTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectGalleryImages(context)
-                                    .then((value) {
-                                  validationProvider.pV = value;
-                                  validationProvider.changeState();
-                                });
-                              }, onCameraTap: () {
-                                context.pop();
-
-                                validationProvider
-                                    .selectCameraImages(context)
-                                    .then((value) {
-                                  validationProvider.pV = value;
-                                  validationProvider.changeState();
-                                });
-                              });
-                            }).whenComplete(() {});
-                      },
-                      image: validationProvider.pV,
-                    ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: ImagePickerWidget(
-                  //     titel: "Fiche d'installation ",
-                  //     onTap: () async {
-                  //       FocusScope.of(context).requestFocus(FocusNode());
-
-                  //       showModalBottomSheet(
-                  //           isScrollControlled: true,
-                  //           shape: const RoundedRectangleBorder(
-                  //               borderRadius: BorderRadius.only(
-                  //                   topLeft: Radius.circular(25.0),
-                  //                   topRight: Radius.circular(25.0))),
-                  //           context: context,
-                  //           builder: (context) {
-                  //             return OptionImage(onGaleryTap: () {
-                  //               context.pop();
-
-                  //               validationProvider
-                  //                   .selectGalleryImages(context)
-                  //                   .then((value) {
-                  //                 validationProvider.ficheInstallation =
-                  //                     value;
-                  //                 validationProvider.changeState();
-                  //               });
-                  //             }, onCameraTap: () {
-                  //               context.pop();
-
-                  //               validationProvider
-                  //                   .selectCameraImages(context)
-                  //                   .then((value) {
-                  //                 validationProvider.ficheInstallation =
-                  //                     value;
-                  //                 validationProvider.changeState();
-                  //               });
-                  //             });
-                  //           }).whenComplete(() {});
-                  //     },
-                  //     image: validationProvider.ficheInstallation,
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 15.0, horizontal: 10),
-                  child: ButtonValidationWidget(
-                    idAffectation: idAffectation,
-                    width: MediaQuery.of(context).size.width,
-                    title: 'Valider',
-                  ),
+                    Text(validationProvider.feedbackBO,
+                        style: TextStyle(
+                            fontSize: 17.sp, fontWeight: FontWeight.w400)),
+                    const SizedBox(height: 15),
+                    Container(
+                      color: Colors.grey.shade400,
+                      width: MediaQuery.of(context).size.width,
+                      height: 1,
+                    )
+                  ],
                 ),
               ),
-            ],
-          )
-        ],
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FieldDeclarationWidget(
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            validationProvider.validationInput(val);
+
+                            return 'Le champ est obligatoire *';
+                          }
+                          return null;
+                        },
+                        controller: TextEditingController(
+                            text: validationProvider.cinDescription),
+                        readOnly: true,
+                        hint: "Prenez une photo recto de la CIN du client",
+                        onTap: () {
+                          context.push(routeOptionCinPage);
+                        },
+                        title: 'CIN client',
+                        keyboardType: TextInputType
+                            .number, // This sets the keyboard to numeric
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly,
+                          // MaxValueTextInputFormatter(
+                          //     2)
+                        ],
+                      ),
+                    ),
+                    Visibility(
+                      visible: validationProvider.cinValueSelected == 0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FieldDescriptionWidget(
+                          readOnly: false,
+                          hint: "Justification",
+                          validator: (val) {
+                            if (val!.isEmpty &&
+                                validationProvider.cinValueSelected == 0) {
+                              validationProvider.validationInput(val);
+
+                              return 'Le champ est obligatoire *';
+                            }
+                            return null;
+                          },
+                          controller:
+                              validationProvider.justificationCinController,
+                          title: 'CIN client justification ',
+                        ),
+                      ),
+                    ),
+
+                    Visibility(
+                      visible: validationProvider.cinValueSelected == 1 ||
+                          validationProvider.cinValueSelected == 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ImagePickerWidget(
+                          titel: 'Photo CIN client recto',
+                          onTap: () async {
+                            FocusScope.of(context).requestFocus(FocusNode());
+
+                            showModalBottomSheet(
+                                isScrollControlled: true,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(25.0),
+                                        topRight: Radius.circular(25.0))),
+                                context: context,
+                                builder: (context) {
+                                  return OptionImage(onGaleryTap: () {
+                                    context.pop();
+
+                                    validationProvider
+                                        .selectGalleryImages(context)
+                                        .then((value) {
+                                      validationProvider.cinImage = value;
+                                      validationProvider.changeState();
+                                    });
+                                  }, onCameraTap: () {
+                                    context.pop();
+
+                                    validationProvider
+                                        .selectCameraImages(context)
+                                        .then((value) {
+                                      validationProvider.cinImage = value;
+                                      validationProvider.changeState();
+                                    });
+                                  });
+                                }).whenComplete(() {});
+                          },
+                          image: validationProvider.cinImage,
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FieldDeclarationWidget(
+                        controller: validationProvider.testDebitFo,
+                        readOnly: false,
+                        //  onTap: (){
+                        //   context.push(routeOptionPage);
+                        //  },
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return 'Le champ est obligatoire *';
+                          }
+                          return null;
+                        },
+                        title: 'Test_debit_FO :',
+                        keyboardType: TextInputType
+                            .number, // This sets the keyboard to numeric
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly,
+                          MaxValueTextInputFormatter(
+                              200) // set the maximum value to 100
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ImagePickerWidget(
+                        titel: 'Test debit via cable img',
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(FocusNode());
+
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25.0),
+                                      topRight: Radius.circular(25.0))),
+                              context: context,
+                              builder: (context) {
+                                return OptionImage(onGaleryTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectGalleryImages(context)
+                                      .then((value) {
+                                    validationProvider.testDebitViaCableImg =
+                                        value;
+                                    validationProvider.changeState();
+                                  });
+                                }, onCameraTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectCameraImages(context)
+                                      .then((value) {
+                                    validationProvider.testDebitViaCableImg =
+                                        value;
+                                    validationProvider.changeState();
+                                  });
+                                });
+                              }).whenComplete(() {});
+                        },
+                        image: validationProvider.testDebitViaCableImg,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ImagePickerWidget(
+                        titel: 'Photo test debit via Wifi',
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(FocusNode());
+
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25.0),
+                                      topRight: Radius.circular(25.0))),
+                              context: context,
+                              builder: (context) {
+                                return OptionImage(onGaleryTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectGalleryImages(context)
+                                      .then((value) {
+                                    validationProvider
+                                        .photoTestDebitViaWifiImg = value;
+                                    validationProvider.changeState();
+                                  });
+                                }, onCameraTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectCameraImages(context)
+                                      .then((value) {
+                                    validationProvider
+                                        .photoTestDebitViaWifiImg = value;
+                                    validationProvider.changeState();
+                                  });
+                                });
+                              }).whenComplete(() {});
+                        },
+                        image: validationProvider.photoTestDebitViaWifiImg,
+                      ),
+                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: ImagePickerWidget(
+                    //     titel: 'Image_Test_Signal_FO ',
+                    //     onTap: () async {
+                    //       FocusScope.of(context).requestFocus(FocusNode());
+
+                    //       showModalBottomSheet(
+                    //           isScrollControlled: true,
+                    //           shape: const RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.only(
+                    //                   topLeft: Radius.circular(25.0),
+                    //                   topRight: Radius.circular(25.0))),
+                    //           context: context,
+                    //           builder: (context) {
+                    //             return OptionImage(onGaleryTap: () {
+                    //               context.pop();
+
+                    //               validationProvider
+                    //                   .selectGalleryImages(context)
+                    //                   .then((value) {
+                    //                 validationProvider.imageTestDebitFo = value;
+                    //                 validationProvider.changeState();
+                    //               });
+                    //             }, onCameraTap: () {
+                    //               context.pop();
+
+                    //               validationProvider
+                    //                   .selectCameraImages(context)
+                    //                   .then((value) {
+                    //                 validationProvider.imageTestDebitFo = value;
+                    //                 validationProvider.changeState();
+                    //               });
+                    //             });
+                    //           }).whenComplete(() {});
+                    //     },
+                    //     image: validationProvider.imageTestDebitFo,
+                    //   ),
+                    // ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ImagePickerWidget(
+                        titel: 'Routeur/Tel',
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(FocusNode());
+
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25.0),
+                                      topRight: Radius.circular(25.0))),
+                              context: context,
+                              builder: (context) {
+                                return OptionImage(onGaleryTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectGalleryImages(context)
+                                      .then((value) {
+                                    validationProvider.routeurTel = value;
+                                    validationProvider.changeState();
+                                  });
+                                }, onCameraTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectCameraImages(context)
+                                      .then((value) {
+                                    validationProvider.routeurTel = value;
+                                    validationProvider.changeState();
+                                  });
+                                });
+                              }).whenComplete(() {});
+                        },
+                        image: validationProvider.routeurTel,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ImagePickerWidget(
+                        titel: 'Etiquetage',
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(FocusNode());
+
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25.0),
+                                      topRight: Radius.circular(25.0))),
+                              context: context,
+                              builder: (context) {
+                                return OptionImage(onGaleryTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectGalleryImages(context)
+                                      .then((value) {
+                                    validationProvider.etiquetageImg = value;
+                                    validationProvider.changeState();
+                                  });
+                                }, onCameraTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectCameraImages(context)
+                                      .then((value) {
+                                    validationProvider.etiquetageImg = value;
+                                    validationProvider.changeState();
+                                  });
+                                });
+                              }).whenComplete(() {});
+                        },
+                        image: validationProvider.etiquetageImg,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ImagePickerWidget(
+                        titel: 'PV',
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(FocusNode());
+
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25.0),
+                                      topRight: Radius.circular(25.0))),
+                              context: context,
+                              builder: (context) {
+                                return OptionImage(onGaleryTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectGalleryImages(context)
+                                      .then((value) {
+                                    validationProvider.pV = value;
+                                    validationProvider.changeState();
+                                  });
+                                }, onCameraTap: () {
+                                  context.pop();
+
+                                  validationProvider
+                                      .selectCameraImages(context)
+                                      .then((value) {
+                                    validationProvider.pV = value;
+                                    validationProvider.changeState();
+                                  });
+                                });
+                              }).whenComplete(() {});
+                        },
+                        image: validationProvider.pV,
+                      ),
+                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: ImagePickerWidget(
+                    //     titel: "Fiche d'installation ",
+                    //     onTap: () async {
+                    //       FocusScope.of(context).requestFocus(FocusNode());
+
+                    //       showModalBottomSheet(
+                    //           isScrollControlled: true,
+                    //           shape: const RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.only(
+                    //                   topLeft: Radius.circular(25.0),
+                    //                   topRight: Radius.circular(25.0))),
+                    //           context: context,
+                    //           builder: (context) {
+                    //             return OptionImage(onGaleryTap: () {
+                    //               context.pop();
+
+                    //               validationProvider
+                    //                   .selectGalleryImages(context)
+                    //                   .then((value) {
+                    //                 validationProvider.ficheInstallation =
+                    //                     value;
+                    //                 validationProvider.changeState();
+                    //               });
+                    //             }, onCameraTap: () {
+                    //               context.pop();
+
+                    //               validationProvider
+                    //                   .selectCameraImages(context)
+                    //                   .then((value) {
+                    //                 validationProvider.ficheInstallation =
+                    //                     value;
+                    //                 validationProvider.changeState();
+                    //               });
+                    //             });
+                    //           }).whenComplete(() {});
+                    //     },
+                    //     image: validationProvider.ficheInstallation,
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15.0, horizontal: 10),
+                    child: ButtonValidationWidget(
+                      idAffectation: idAffectation,
+                      width: MediaQuery.of(context).size.width,
+                      title: 'Valider',
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

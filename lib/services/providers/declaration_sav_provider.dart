@@ -14,7 +14,6 @@ class DeclarationSavProvider extends ChangeNotifier {
   bool loading = false;
   TextEditingController descriptionController = TextEditingController();
   Uint8List image = Uint8List(0);
-
   Uint8List imageTestSignal = Uint8List(0);
   Uint8List imageBlockage = Uint8List(0);
 
@@ -65,6 +64,9 @@ class DeclarationSavProvider extends ChangeNotifier {
       SncakBarWidgdet.snackBarSucces(
           context, "Veuillez Remplir l'image Test Signal.");
       return false;
+    } else if (descriptionController.text.isEmpty) {
+      SncakBarWidgdet.snackBarSucces(context, "Veuillez Choisir la solution.");
+      return false;
     } else {
       return true;
     }
@@ -76,8 +78,7 @@ class DeclarationSavProvider extends ChangeNotifier {
     try {
       http.post(uri, headers: headers, body: data);
       return true;
-    } catch (e) {
-      print(e.toString());
+    } catch (e) { 
       return false;
     }
   }
@@ -122,10 +123,9 @@ class DeclarationSavProvider extends ChangeNotifier {
     var headers = {'Accept': 'application/json'};
     Uri uri = Uri.parse('$savUrl/addFeedbackBlockage');
     try {
-      http.post(uri, headers: headers, body: data);
+      var test = await http.post(uri, headers: headers, body: data); 
       return true;
-    } catch (e) {
-      print(e.toString());
+    } catch (e) { 
       return false;
     }
   }

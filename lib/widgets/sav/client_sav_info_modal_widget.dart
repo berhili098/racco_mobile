@@ -220,10 +220,11 @@ class ClientSavInfoModalWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: SelectableText(
-                                    affectation.description == null ?
-                                        affectation.description!
+                                    affectation.description == null
+                                        ? affectation.description!
                                             .replaceAll("Description", "")
-                                            .replaceAll(":", ""):"",
+                                            .replaceAll(":", "")
+                                        : "",
                                     textAlign: TextAlign.center,
                                     toolbarOptions: const ToolbarOptions(
                                       copy: true,

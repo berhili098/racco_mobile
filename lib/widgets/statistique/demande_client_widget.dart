@@ -16,9 +16,9 @@ class DemandeClientWidget extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-        customBorder: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-),
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 66.w,
@@ -46,7 +46,7 @@ class DemandeClientWidget extends StatelessWidget {
                   child: Text(
                     title,
                     style: TextStyle(
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w700,
                         fontSize: 17.sp,
                         color: Colors.black),
                   ),

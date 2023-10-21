@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(          resizeToAvoidBottomInset: false,
-body: FormLoginWidget());
+    return const Scaffold(
+        resizeToAvoidBottomInset: false, body: FormLoginWidget());
   }
 }

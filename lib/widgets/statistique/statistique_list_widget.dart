@@ -41,149 +41,139 @@ class StatistiqueListWidget extends StatelessWidget {
     return LoadingOverlay(
       isLoading: clientProvider.isLoading,
       // progressIndicator: const SizedBox(),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                ClipPath(
-                  clipper: BottomWaveClipper(),
-                  child: Container(
-                      height: 358.w,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment(1, 1.5),
-                            end: Alignment(-0.94597145915031433, -0.8),
-                            colors: [
-                              Color.fromRGBO(89, 185, 255, 1),
-                              Color.fromRGBO(97, 113, 186, 1)
-                            ]),
-                      )),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
+        children: [
+          ClipPath(
+            clipper: BottomWaveClipper(),
+            child: Container(
+                height: 358.w,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment(1, 1.5),
+                      end: Alignment(-0.94597145915031433, -0.8),
+                      colors: [
+                        Color.fromRGBO(89, 185, 255, 1),
+                        Color.fromRGBO(97, 113, 186, 1)
+                      ]),
+                )),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 80.w),
+                child: SizedBox(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: 15.w, right: 15.w, top: 80.w),
-                      child: SizedBox(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () => Scaffold.of(context).openDrawer(),
-                            icon: SvgPicture.asset(
-                                'assets/icons/home/Sort-1.svg'),
-                          ),
-                          InkWell(
-                            onTap: () => context.push(routeNotificationPage),
-                            child: Stack(
-                              children: [
-                                SvgPicture.asset(
-                                    'assets/icons/home/Notification.svg'),
-                                userProvider.notificationsList.isEmpty
-                                    ? const SizedBox()
-                                    : Container(
-                                        width: 20,
-                                        height: 20,
-                                        alignment: Alignment.center,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.red,
-                                        ),
-                                        child: Text(
-                                          userProvider.notificationsList.length
-                                              .toString(),
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 11),
-                                        ))
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () => Scaffold.of(context).openDrawer(),
+                      icon: SvgPicture.asset('assets/icons/home/Sort-1.svg'),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: 20.w, right: 15.w, top: 15.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    InkWell(
+                      onTap: () => context.push(routeNotificationPage),
+                      child: Stack(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Bonjour",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 39.sp,
-                                        color: Colors.white),
+                          SvgPicture.asset(
+                              'assets/icons/home/Notification.svg'),
+                          userProvider.notificationsList.isEmpty
+                              ? const SizedBox()
+                              : Container(
+                                  width: 20,
+                                  height: 20,
+                                  alignment: Alignment.center,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.red,
                                   ),
-                                  Text(
-                                    userProvider.userData!.firstName ?? '',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 20.sp,
-                                        color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    affectationProvider
-                                        .getAffectationTechnicien(
-                                            context,
-                                            userProvider.userData!.technicienId
-                                                .toString());
+                                  child: Text(
+                                    userProvider.notificationsList.length
+                                        .toString(),
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 11),
+                                  ))
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 20.w, right: 15.w, top: 15.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Bonjour",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 39.sp,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          userProvider.userData!.firstName ?? '',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20.sp,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          affectationProvider.getAffectationTechnicien(context,
+                              userProvider.userData!.technicienId.toString());
 
-                                    affectationProvider.getAffectationPlanifier(
-                                        context,
-                                        userProvider.userData!.technicienId
-                                            .toString());
+                          affectationProvider.getAffectationPlanifier(context,
+                              userProvider.userData!.technicienId.toString());
 
-                                    affectationProvider.getAffectationValider(
-                                        context,
-                                        userProvider.userData!.technicienId
-                                            .toString());
+                          affectationProvider.getAffectationValider(context,
+                              userProvider.userData!.technicienId.toString());
 
-                                    // affectationProvider.getAffectationDeclarer(
-                                    //     context, userProvider.userData!.technicienId.toString());
-                                    affectationProvider.getTicketTechnicien(
-                                        context,
-                                        userProvider.userData!.technicienId
-                                            .toString());
-                                    affectationProvider.getAffectationBlocage(
-                                        context,
-                                        userProvider.userData!.technicienId
-                                            .toString());
-                                    affectationProvider.getSavTicketPlanifier(
-                                        context,
-                                        userProvider.userData!.technicienId
-                                            .toString());
-                                    affectationProvider
-                                        .getAffectationBeforValidationBlocage(
-                                            context,
-                                            userProvider.userData!.technicienId
-                                                .toString());
+                          // affectationProvider.getAffectationDeclarer(
+                          //     context, userProvider.userData!.technicienId.toString());
+                          affectationProvider.getTicketTechnicien(context,
+                              userProvider.userData!.technicienId.toString());
+                          affectationProvider.getAffectationBlocage(context,
+                              userProvider.userData!.technicienId.toString());
+                          affectationProvider.getSavTicketPlanifier(context,
+                              userProvider.userData!.technicienId.toString());
+                          affectationProvider
+                              .getAffectationBeforValidationBlocage(
+                                  context,
+                                  userProvider.userData!.technicienId
+                                      .toString());
 
-                                    userProvider.getNotifications(context,
-                                        userProvider.userData!.id.toString());
-                                  },
-                                  icon: Icon(
-                                    Icons.refresh_rounded,
-                                    size: 35.r,
-                                    color: Colors.white,
-                                  )),
-                            ],
-                          ),
-                          DemandeClientWidget(
-                            title: "Demander des clients",
-                            onTap: () async {
+                          userProvider.getNotifications(
+                              context, userProvider.userData!.id.toString());
+                        },
+                        icon: Icon(
+                          Icons.refresh_rounded,
+                          size: 35.r,
+                          color: Colors.white,
+                        )),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.w, right: 15.w, top: 15.w),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        DemandeClientWidget(
+                          title: "Demander des clients",
+                          onTap: () async {
+                            if (userProvider.userData!.technicien!.typeTech ==
+                                2) {
+                              SncakBarWidgdet.snackBarSucces(context,
+                                  "Vous ne pouvez pas demander un client .");
+                            } else {
                               if (affectationProvider.conterCheckCaptcha ==
                                   affectationProvider.conterCheckCaptchaShow) {
                                 showModalBottomSheet(
@@ -233,31 +223,65 @@ class StatistiqueListWidget extends StatelessWidget {
                                   }
                                 });
                               }
-                            },
-                          ),
-                          20.verticalSpace,
-                          CardStatistiqueWidget(
+                            }
+                          },
+                        ),
+                        20.verticalSpace,
+                        CardStatistiqueWidget(
+                          icon: const Icon(Icons.abc),
+                          nbItem: affectationProvider.affectations.length,
+                          percent: 1.0,
+                          title: "Vos clients ",
+                          useProgress: true,
+                          onTap: () {
+                            validationProvider.initValue();
+                            declarationProvider.initValue();
+                            context.push(routeAffectations);
+                          },
+                        ),
+                        20.verticalSpace,
+                        CardStatistiqueWidget(
+                          icon: const Icon(Icons.abc),
+                          nbItem: affectationProvider.savTicket.length,
+                          percent: 1.0,
+                          title: "Vos clients Sav",
+                          isSav: true,
+                          useProgress: true,
+                          onTap: () {
+                            affectationProvider.getTicketTechnicien(context,
+                                userProvider.userData!.technicienId.toString());
+
+                            declarationSavProvier.initValue();
+                            // context.push(routeAffectations);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ClientSavPage()),
+                            );
+                          },
+                        ),
+                        20.verticalSpace,
+                        CardPlanificationWidget(
+                          icon: const Icon(Icons.abc),
+                          nbItem: affectationProvider
+                              .affectationsPlanifier.length
+                              .toString(),
+                          percent: 1.0,
+                          title: "Clients planifiés",
+                          useProgress: false,
+                          onTap: () => context.push(routeFormTechniqueBlocage),
+                        ),
+                        20.verticalSpace,
+                        CardPlanificationWidget(
                             icon: const Icon(Icons.abc),
-                            nbItem: affectationProvider.affectations.length,
+                            nbItem: affectationProvider
+                                .savTicketPlanifier.length
+                                .toString(),
                             percent: 1.0,
-                            title: "Vos clients ",
-                            useProgress: true,
+                            title: "Clients Sav planifiés",
+                            useProgress: false,
                             onTap: () {
-                              validationProvider.initValue();
-                              declarationProvider.initValue();
-                              context.push(routeAffectations);
-                            },
-                          ),
-                          20.verticalSpace,
-                          CardStatistiqueWidget(
-                            icon: const Icon(Icons.abc),
-                            nbItem: affectationProvider.savTicket.length,
-                            percent: 1.0,
-                            title: "Vos clients Sav",
-                            isSav: true,
-                            useProgress: true,
-                            onTap: () {
-                              affectationProvider.getTicketTechnicien(
+                              affectationProvider.getSavTicketPlanifier(
                                   context,
                                   userProvider.userData!.technicienId
                                       .toString());
@@ -268,71 +292,34 @@ class StatistiqueListWidget extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const ClientSavPage()),
+                                        const ClientSavPlanPage()),
                               );
-                            },
-                          ),
-                          20.verticalSpace,
-                          CardPlanificationWidget(
-                            icon: const Icon(Icons.abc),
-                            nbItem: affectationProvider
-                                .affectationsPlanifier.length
-                                .toString(),
-                            percent: 1.0,
-                            title: "Clients planifiés",
-                            useProgress: false,
-                            onTap: () =>
-                                context.push(routeFormTechniqueBlocage),
-                          ),
-                          20.verticalSpace,
-                          CardPlanificationWidget(
-                              icon: const Icon(Icons.abc),
-                              nbItem: affectationProvider
-                                  .savTicketPlanifier.length
-                                  .toString(),
-                              percent: 1.0,
-                              title: "Clients Sav planifiés",
-                              useProgress: false,
-                              onTap: () {
-                                affectationProvider.getSavTicketPlanifier(
-                                    context,
-                                    userProvider.userData!.technicienId
-                                        .toString());
+                            }),
+                        HomerdWidget(
+                          title: "Demandes PPI",
+                          onTap: () {
+                            validationProvider.initValue();
+                            declarationProvider.initValue();
 
-                                declarationSavProvier.initValue();
-                                // context.push(routeAffectations);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ClientSavPlanPage()),
-                                );
-                              }),
-                          HomerdWidget(
-                            title: "Demandes PPI",
-                            onTap: () {
-                              validationProvider.initValue();
-                              declarationProvider.initValue();
-
-                              context.push(routePromoteur);
-                            },
-                            showNumber: true,
-                            icon: IconlyBold.user_2,
-                          ),
-                          HomerdWidget(
-                            title: "Historique",
-                            onTap: () => context.push(routeHistoriquePage),
-                            icon: Icons.history_outlined,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                            context.push(routePromoteur);
+                          },
+                          showNumber: true,
+                          icon: IconlyBold.user_2,
+                        ),
+                        HomerdWidget(
+                          title: "Historique",
+                          onTap: () => context.push(routeHistoriquePage),
+                          icon: Icons.history_outlined,
+                        ),
+                        55.verticalSpace,
+                      ],
+                    ),
+                  ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

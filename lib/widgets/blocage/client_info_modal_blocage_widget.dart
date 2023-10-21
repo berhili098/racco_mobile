@@ -127,7 +127,7 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                             ],
                           ),
                         ),
-                              Row(
+                        Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -142,22 +142,19 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                                       fontSize: 21.sp),
                                 ),
                                 Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('${blocage.affectation!.client!.offre}',
+                                    Text(
+                                        '${blocage.affectation!.client!.offre}',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w300,
                                           fontSize: 16.sp,
                                         )),
-                                
                                   ],
                                 ),
                               ],
                             ),
-
-
                             SizedBox(width: 25.w),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -173,7 +170,8 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('${blocage.affectation!.client!.routeurType}',
+                                    Text(
+                                        '${blocage.affectation!.client!.routeurType}',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w300,
                                           fontSize: 16.sp,
@@ -191,8 +189,6 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-
-
                         SizedBox(
                           height: 15.w,
                         ),
@@ -224,7 +220,7 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                               onPressed: () {
                                 Clipboard.setData(ClipboardData(
                                         text: blocage
-                                            .affectation!.client!.phoneNo??""))
+                                            .affectation!.client!.phoneNo!))
                                     .then((_) {
                                   SncakBarWidgdet.snackBarSucces(
                                       context, "Copier avec succès");

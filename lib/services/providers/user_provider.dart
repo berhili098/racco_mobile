@@ -190,7 +190,7 @@ class UserProvider extends ChangeNotifier {
     // }
   }
 
-  late LatLng latLngUser;
+  LatLng latLngUser = LatLng(0, 0);
   String errorEmailTxtField = "";
   String errorPasswordTxtField = "";
   String errorFullNameTxtField = "";
@@ -213,12 +213,10 @@ class UserProvider extends ChangeNotifier {
 
   calculateDistance2() async {
     Position currentPosition = await Geolocator.getCurrentPosition();
-
     Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: te.LocationAccuracy.high,
     );
     Map<LatLng, double> distances = {};
-
     for (var location in locations) {
       double distanceInMeters = Geolocator.distanceBetween(
         position.latitude,
@@ -229,18 +227,14 @@ class UserProvider extends ChangeNotifier {
 
       distances[location] = distanceInMeters;
     }
-
     locations.sort((a, b) => distances[b]!.compareTo(distances[a]!));
-
     List<LatLng> nearbyLocations = locations.sublist(0, 3);
-
     for (int i = 0; i <= nearbyLocations.length; i++) {}
     notifyListeners();
   }
 
   sendRepairTechnicien() {
     loc.Location location = loc.Location();
-
     location.onLocationChanged.listen((event) {
       latLngUser =
           LatLng(event.latitude!.toDouble(), event.longitude!.toDouble());
@@ -509,14 +503,15 @@ class UserProvider extends ChangeNotifier {
 
   login(String email, String password, BuildContext context) async {
     Response response;
-    loading = true;
-    notifyListeners();
+    // loading = true;
+    // notifyListeners();
 
     response = await userApi.loginService(email, password);
-
     switch (response.statusCode) {
       case 200:
         User user = User.fromJson(jsonDecode(response.body)["User"]);
+
+        log(user.toJson().toString());
 
         await OneSignal.shared.getDeviceState().then((value) {
           updatePlayerId(
@@ -589,10 +584,14 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future<void> logOut(String userId, BuildContext context) async {
+    context.go('/');
+
     await dropSessionUser();
     await checkUserAuth();
-    logged = false;
+
     deconnectUser(userId);
+    logged = false;
+
     notifyListeners();
   }
 

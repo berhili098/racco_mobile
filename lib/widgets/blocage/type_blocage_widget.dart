@@ -27,12 +27,14 @@ class TypeBlocageWidget extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   padding: EdgeInsets.zero,
-                  itemCount: BlocageClient.values.length,
+                  itemCount: isSav == true
+                      ? BlocageSavClient.values.length
+                      : BlocageClient.values.length,
                   itemBuilder: (_, index) {
                     return Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 12, right: 12),
+                          padding: EdgeInsets.only(left: 12.w, right: 12.w),
                           child: Container(
                             height: 0.5,
                             width: MediaQuery.of(context).size.width,
@@ -41,10 +43,17 @@ class TypeBlocageWidget extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            blocageProvider.setValueTypeBlocage(
-                                BlocageClient.values[index]);
-                            blocageProvider.checlValueTypeBlocage(
-                                BlocageClient.values[index]);
+                            isSav == false
+                                ? blocageProvider.setValueTypeBlocage(
+                                    BlocageClient.values[index])
+                                : blocageProvider.setValueTypeBlocageSav(
+                                    BlocageSavClient.values[index]);
+
+                            isSav == true
+                                ? blocageProvider.checlValueTypeBlocageSav(
+                                    BlocageSavClient.values[index])
+                                : blocageProvider.checlValueTypeBlocage(
+                                    BlocageClient.values[index]);
                           },
                           child: Container(
                             padding: const EdgeInsets.only(
@@ -57,24 +66,47 @@ class TypeBlocageWidget extends StatelessWidget {
                                 Expanded(
                                     flex: 4,
                                     child: etatText(
-                                      blocageProvider.getStringFromSwitch(
-                                          BlocageClient.values[index]),
-                                    )),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Radio<String>(
-                                      value:
-                                          blocageProvider.getStringFromSwitch(
+                                      isSav == true
+                                          ? blocageProvider
+                                              .getStringFromSwitchSav(
+                                                  BlocageSavClient
+                                                      .values[index])
+                                          : blocageProvider.getStringFromSwitch(
                                               BlocageClient.values[index]),
-                                      groupValue: blocageProvider
-                                          .typeBlocageController.text,
-                                      activeColor:
-                                          const Color.fromRGBO(151, 72, 150, 1),
-                                      onChanged: (value) {},
-                                    ),
-                                  ),
-                                )
+                                    )),
+                                isSav == false
+                                    ? Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Radio<String>(
+                                            value: blocageProvider
+                                                .getStringFromSwitch(
+                                                    BlocageClient
+                                                        .values[index]),
+                                            groupValue: blocageProvider
+                                                .typeBlocageController.text,
+                                            activeColor: const Color.fromRGBO(
+                                                151, 72, 150, 1),
+                                            onChanged: (value) {},
+                                          ),
+                                        ),
+                                      )
+                                    : Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Radio<String>(
+                                            value: blocageProvider
+                                                .getStringFromSwitchSav(
+                                                    BlocageSavClient
+                                                        .values[index]),
+                                            groupValue: blocageProvider
+                                                .typeBlocageController.text,
+                                            activeColor: const Color.fromRGBO(
+                                                151, 72, 150, 1),
+                                            onChanged: (value) {},
+                                          ),
+                                        ),
+                                      )
                               ],
                             ),
                           ),
@@ -102,7 +134,7 @@ class TypeBlocageWidget extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 20.0, left: 10, right: 10),
           child: ButtonSendWidget(
             onPressed: () async {
-              if (isSav == true || isSav != null) {
+              if (isSav == true) {
                 blocageProvider.validate(context).then((val) {
                   if (val) {
                     Navigator.push(

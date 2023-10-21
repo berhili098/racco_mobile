@@ -1,4 +1,3 @@
-
 class Technicien {
   int? id;
   int? soustraitantId;
@@ -7,7 +6,7 @@ class Technicien {
   String? planificationCount;
   String? createdAt;
   String? updatedAt;
-
+  int? typeTech;
   int? cityId;
   int? counter;
 
@@ -20,6 +19,7 @@ class Technicien {
       createdAt,
       updatedAt,
       deletedAt,
+      typeTech,
       cityId,
       counter});
 
@@ -29,19 +29,20 @@ class Technicien {
     userId = json['user_id'];
     status = json['status'];
     planificationCount = json['planification_count'];
- 
+    typeTech = json['type_tech'];
 
     cityId = json['city_id'];
     counter = json['counter'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['soustraitant_id'] = soustraitantId;
     data['user_id'] = userId;
     data['status'] = status;
     data['planification_count'] = planificationCount;
+    data['type_tech'] = typeTech;
     data['city_id'] = cityId;
     data['counter'] = counter;
     return data;

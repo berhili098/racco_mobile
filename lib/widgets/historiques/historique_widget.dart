@@ -97,8 +97,8 @@ class HistoriqueWidget extends StatelessWidget {
                                   userProvider.userData!.technicienId
                                       .toString());
 
-                          userProvider.getNotifications(context,
-                              userProvider.userData!.id.toString());
+                          userProvider.getNotifications(
+                              context, userProvider.userData!.id.toString());
                         },
                         icon: Icon(
                           Icons.refresh_rounded,
@@ -118,8 +118,8 @@ class HistoriqueWidget extends StatelessWidget {
                     begin: Alignment(1, 1.5),
                     end: Alignment(-0.94597145915031433, -0.8),
                     colors: [
-                        Color.fromRGBO(89, 185, 255, 1),
-                            Color.fromRGBO(97, 113, 186, 1)
+                      Color.fromRGBO(89, 185, 255, 1),
+                      Color.fromRGBO(97, 113, 186, 1)
                     ]),
               )),
             ),
@@ -135,7 +135,7 @@ class HistoriqueWidget extends StatelessWidget {
                     color: Colors.white),
                 onTap: (value) {
                   affectationProvider.getIndexTab(value);
-                  //         
+                  //
                 },
                 tabs: [
                   // Tab(
@@ -163,7 +163,7 @@ class HistoriqueWidget extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "Planiefié",
+                        "Planifié",
                         style: TextStyle(
                             overflow: TextOverflow.ellipsis,
                             fontSize: 16.sp,
@@ -195,7 +195,6 @@ class HistoriqueWidget extends StatelessWidget {
           ),
         ),
         body: Column(
-
           children: const [
             SizedBox(height: 10),
             Expanded(

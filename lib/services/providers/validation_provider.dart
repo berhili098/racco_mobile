@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
-
 
 import 'package:tracking_user/model/validation.dart';
 import 'package:tracking_user/routes.dart';
@@ -94,29 +94,20 @@ class ValidationProvider extends ChangeNotifier {
 
     testDebitFo.text = validation.testDebit ?? '';
 
-justificationCinController.text =  (validation.cinDescription ??'').isEmpty
-    ? listCinOptionClient  .first["description"]
+    justificationCinController.text = (validation.cinDescription ?? '').isEmpty
+        ? listCinOptionClient.first["description"]
+        : validation.cinDescription ?? '';
 
-    :
-    validation.cinDescription ?? '';
+    cinDescription = (validation.cinDescription ?? '').isEmpty
+        ? listCinOptionClient.first["description"]
+        : validation.cinDescription ?? '';
 
-    cinDescription = 
-    (validation.cinDescription ??'').isEmpty
-    ? listCinOptionClient  .first["description"]
-
-    :
-    validation.cinDescription ?? '';
-
-    cinValueSelected = 
-    (validation.cinDescription ??'').isEmpty
-
-    ?
-    -1
-    :
-    
-    listCinOptionClient
-        .where((element) => element["description"] == validation.cinDescription)
-        .first["value"];
+    cinValueSelected = (validation.cinDescription ?? '').isEmpty
+        ? -1
+        : listCinOptionClient
+            .where((element) =>
+                element["description"] == validation.cinDescription)
+            .first["value"];
     check = false;
     update = true;
 
@@ -154,30 +145,55 @@ justificationCinController.text =  (validation.cinDescription ??'').isEmpty
   }
 
   Future<Uint8List> selectGalleryImages(BuildContext context) async {
-    final XFile? selectedImages = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-       maxHeight: 480,
-      maxWidth: 640,
-      imageQuality: 100);
+    final XFile? selectedImages =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     image = File(selectedImages!.path).readAsBytesSync();
+    final f = File(selectedImages.path);
 
+    int sizeInBytes = f.lengthSync();
+    double sizeInMb = sizeInBytes / (700 * 700);
+
+    if (sizeInMb > 2.0) {
+      final imageComressed =
+          comporessImage(File(selectedImages.path).readAsBytesSync());
+      // image = File(selectedImages.path).readAsBytesSync()
+      return imageComressed;
+    } else {
+      image = File(selectedImages.path).readAsBytesSync();
+    }
     return image;
   }
 
   Future<Uint8List> selectCameraImages(BuildContext context) async {
-    final XFile? selectedImages = await ImagePicker().pickImage(
-        source: ImageSource.camera,
+    final XFile? selectedImages =
+        await ImagePicker().pickImage(source: ImageSource.camera);
 
-        maxHeight: 480,
-      maxWidth: 640,
-      imageQuality: 100);
+    final f = File(selectedImages!.path);
+    int sizeInBytes = f.lengthSync();
+    double sizeInMb = sizeInBytes / (700 * 700);
 
-    image = File(selectedImages!.path).readAsBytesSync();
-
-    // imagelist.add(Uint8List.fromList(IMG.encodePng(resized)));
-
+    if (sizeInMb > 2.0) {
+      final imageComressed =
+          comporessImage(File(selectedImages.path).readAsBytesSync());
+      // image = File(selectedImages.path).readAsBytesSync()
+      return imageComressed;
+    } else {
+      image = File(selectedImages.path).readAsBytesSync();
+    }
     return image;
+  }
+
+  Future<Uint8List> comporessImage(Uint8List list) async {
+    var result = await FlutterImageCompress.compressWithList(
+      list,
+      minHeight: 800,
+      minWidth: 800,
+      quality: 85,
+      rotate: 0,
+    );
+
+    return result;
   }
 
   Future<void> validationAffectation(BuildContext context, Object data,

@@ -1,3 +1,4 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -6,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:tracking_user/model/sav_ticket.dart';
 import 'package:tracking_user/services/providers/declaration_sav_provider.dart';
 import 'package:tracking_user/widgets/appBar/appbar_widget.dart';
-import 'package:tracking_user/widgets/declaration/field_declaration_widget.dart';
 
 import '../../widgets/deblocage/image_picker_widget.dart';
 import '../../widgets/validation/option_image_widget.dart';
@@ -21,8 +21,6 @@ class DeclarationSavPage extends StatefulWidget {
 }
 
 class _DeclarationSavPageState extends State<DeclarationSavPage> {
-
-
   @override
   Widget build(BuildContext context) {
     final declarationProvider = Provider.of<DeclarationSavProvider>(context);
@@ -39,7 +37,8 @@ class _DeclarationSavPageState extends State<DeclarationSavPage> {
                 height: 45.h,
                 child: ElevatedButton(
                   onPressed: () {
-                    declarationProvider.submit(context, widget.affectation.id.toString());
+                    declarationProvider.submit(
+                        context, widget.affectation.id.toString());
                   },
                   child: const Text('Declarer'),
                 ),
@@ -126,22 +125,45 @@ class _DeclarationSavPageState extends State<DeclarationSavPage> {
                   image: declarationProvider.imageFacultatif,
                 ),
               ),
+              12.verticalSpace,
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.h),
-                child: FieldDeclarationWidget(
-                  maxLines: 10,
-                  validator: (val) {
-                    return null;
-                  },
-                  controller: declarationProvider.descriptionController,
-                  readOnly: false,
-                  //  onTap: (){
-                  //   context.push(routeOptionPage);
-                  //  },
-                  title: 'Description',
-                  // This sets the keyboard to numeric
+                padding: EdgeInsets.symmetric(horizontal: 28.w),
+                child: Row(
+                  children: [
+                    Text(
+                      "Solution :",
+                      style: TextStyle(
+                          fontSize: 16.sp, fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
+              12.verticalSpace,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: CustomDropdown.search(
+                  hintText: 'Selectionnez la solution',
+                  items: const [
+  'Probleme de jarretiere',
+  'Changement de jarretiere', 
+  'Probleme de PTO',
+  'Changement de PTO', 
+  'Changement de transformateur', 
+  'Probleme au PBI',
+  'Probleme au PBO', 
+  'Changement de cable abonné',  
+  'Probleme au niveau de la chambre', 
+  'Changement de cable transport', 
+  'Changement de routeur', 
+  'Changement routeur payant', 
+  'Rien a signaler', 
+  'Probleme de config',
+  'Changement de téléphone', 
+  'Emplacement', 
+],
+                  controller: declarationProvider.descriptionController,
+                ),
+              )
             ],
           ),
         ));

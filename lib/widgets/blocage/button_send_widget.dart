@@ -16,15 +16,14 @@ class ButtonSendWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final blocageProvider = Provider.of<BlocageProvider>(context);
-    final userProvider = Provider.of<UserProvider>(context);
-
     return SizedBox(
       width: width,
       height: 53.h,
       child: ElevatedButton(
         style: ButtonStyle(
           elevation: MaterialStateProperty.all(8),
+          backgroundColor:
+              MaterialStateProperty.all(Theme.of(context).primaryColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(13.0), // radius you want
@@ -32,11 +31,8 @@ class ButtonSendWidget extends StatelessWidget {
               color: Colors.transparent,
             ),
           )),
-        
         ),
-        onPressed: 
-        onPressed,
-        
+        onPressed: onPressed,
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(

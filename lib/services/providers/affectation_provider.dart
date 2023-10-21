@@ -46,7 +46,6 @@ class AffectationProvider extends ChangeNotifier {
       http.post(uri, headers: headers, body: data);
       return true;
     } catch (e) {
-      print(e.toString());
       return false;
     }
   }
@@ -57,7 +56,7 @@ class AffectationProvider extends ChangeNotifier {
 
     updateDeclarationSav({
       'sav_ticket_id': affectation.id.toString(),
-      'planification_da,te': result.toString()
+      'planification_date': result.toString()
     }).then((value) {
       loading = false;
       notifyListeners();
@@ -91,7 +90,7 @@ class AffectationProvider extends ChangeNotifier {
     indexTab = index;
   }
 
-  RefreshController refreshController =
+  final RefreshController refreshController =
       RefreshController(initialRefresh: false);
 
   AffectationsApi affectationsApi = AffectationsApi();
@@ -361,11 +360,15 @@ class AffectationProvider extends ChangeNotifier {
   Future<void> getTicketTechnicien(BuildContext context, String id,
       {bool callNotify = false}) async {
     loading = false;
+    print('object');
 
     try {
       // loading = true;
       // notifyListeners();
       response = await affectationsApi.getSavTicketTechnicien(id);
+      print(response.body);
+      print('object');
+      print(response.statusCode);
       switch (response.statusCode) {
         case 200:
           savTicket.clear();

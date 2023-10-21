@@ -161,7 +161,7 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                             ],
                           ),
                         ),
-                                                  Row(
+                        Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -176,8 +176,7 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                                       fontSize: 21.sp),
                                 ),
                                 Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text('${affectation.client!.offre}',
@@ -185,13 +184,10 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                                           fontWeight: FontWeight.w300,
                                           fontSize: 16.sp,
                                         )),
-                                
                                   ],
                                 ),
                               ],
                             ),
-
-
                             SizedBox(width: 25.w),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -225,8 +221,6 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-
-
                         SizedBox(
                           height: 15.w,
                         ),
