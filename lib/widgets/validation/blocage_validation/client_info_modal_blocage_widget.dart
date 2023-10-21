@@ -257,7 +257,7 @@ class ClientInfoModalBlocageWidget extends StatelessWidget {
                               ),
                               onPressed: () {
                                 Clipboard.setData(ClipboardData(
-                                        text: affectation.client!.phoneNo))
+                                        text: affectation.client!.phoneNo!))
                                     .then((_) {
                                   SncakBarWidgdet.snackBarSucces(
                                       context, "Copier avec succès");

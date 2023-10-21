@@ -24,15 +24,15 @@ class _AffectationListPageState extends State<AffectationListPage> {
         }
         return Column(
           children: [
-            Card(
-              color: const Color.fromARGB(255, 90, 218, 117),
+            const Card(
+              color: Color.fromARGB(255, 90, 218, 117),
               // In many cases, the key isn't mandatory
               // key: ValueKey(myProducts[index]),
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
               child: Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
                   child: Column(
-                    children: const [
+                    children: [
                       Text('Postion actuelle'),
                       Text('lat : 33.593'),
                       Text('long : -7.6179')

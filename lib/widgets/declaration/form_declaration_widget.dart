@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -491,7 +490,7 @@ class FormDeclationWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                                    Padding(
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FieldDeclarationWidget(
                       validator: (val) {
@@ -502,8 +501,7 @@ class FormDeclationWidget extends StatelessWidget {
                         }
                         return null;
                       },
-                      controller:
-                          declarationProvider.typeDeRoteurController,
+                      controller: declarationProvider.typeDeRoteurController,
                       readOnly: true,
                       hint: 'Choisir type de routeur',
                       onTap: () {
@@ -519,7 +517,6 @@ class FormDeclationWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-               
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FiealdDeclarationAutoCompletWidget(

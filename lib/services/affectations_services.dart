@@ -23,8 +23,8 @@ class AffectationsApi {
     return http.get(uri, headers: headers);
   }
 
-  Future getSavTicketTechnicien(String id) async { 
-    var headers = {'Accept': 'application/json'};
+  Future getSavTicketTechnicien(String id) async {
+    var headers = {'Accept': 'application/json'}; 
     // init the url
     Uri uri = Uri.parse("$savapiUrl/getSavTickets/$id");
 
@@ -51,11 +51,11 @@ class AffectationsApi {
     // post the data
     return http.get(uri, headers: headers);
   }
+
   Future getSavTicketPlanifier(String id) async {
     var headers = {'Accept': 'application/json'};
     // init the url
-    Uri uri = Uri.parse(
-        "$savapiUrl/getPlanifiedTicket/$id");
+    Uri uri = Uri.parse("$savapiUrl/getPlanifiedTicket/$id");
 
     // post the data
     return http.get(uri, headers: headers);
@@ -138,7 +138,6 @@ class AffectationsApi {
       'technicien_id': technicienId
     });
   }
-  
 
   Future declarerAffectation(Object data) async {
     var headers = {'Accept': 'application/json'};

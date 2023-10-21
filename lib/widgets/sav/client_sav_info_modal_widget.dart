@@ -106,46 +106,6 @@ class ClientSavInfoModalWidget extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        // Visibility(
-                        //   visible: !withPlanification &&
-                        //       affectation.status != 'Bloqué' &&
-                        //       affectation.status != 'Terminé',
-                        //   child: Column(
-                        //     children: [
-                        //       Text(
-                        //         "Date de planification",
-                        //         style: TextStyle(
-                        //             fontWeight: FontWeight.w400,
-                        //             fontSize: 21.sp),
-                        //       ),
-                        //       const SizedBox(
-                        //         height: 10,
-                        //       ),
-                        //       Text(
-                        //           affectation.datePlanification!.isNotEmpty
-                        //               ? DateFormat('dd/MM/yyyy hh:mm').format(
-                        //                   DateTime.parse(
-                        //                       affectation.datePlanification!))
-                        //               : '',
-                        //           style: TextStyle(
-                        //               fontWeight: FontWeight.w500,
-                        //               fontSize: 16.sp,
-                        //               color: Colors.red)),
-                        //       const SizedBox(
-                        //         height: 25,
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(width: 25.w),
-                          ],
-                        ),
-
                         SizedBox(
                           height: 20.w,
                         ),
@@ -176,7 +136,7 @@ class ClientSavInfoModalWidget extends StatelessWidget {
                               ),
                               onPressed: () {
                                 Clipboard.setData(ClipboardData(
-                                        text: affectation.client!.phoneNo))
+                                        text: affectation.client!.phoneNo!))
                                     .then((_) {
                                   SncakBarWidgdet.snackBarSucces(
                                       context, "Copier avec succès");
@@ -243,6 +203,39 @@ class ClientSavInfoModalWidget extends StatelessWidget {
                               //     // launchUrl(telLaunchUri);
                               //   },
                               // ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          "Description",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 21.sp),
+                        ),
+                        const SizedBox(
+                          height: 7,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: SelectableText(
+                                    affectation.description == null ?
+                                        affectation.description!
+                                            .replaceAll("Description", "")
+                                            .replaceAll(":", ""):"",
+                                    textAlign: TextAlign.center,
+                                    toolbarOptions: const ToolbarOptions(
+                                      copy: true,
+                                      selectAll: true,
+                                    ),
+                                    maxLines: 2,
+                                    showCursor: true,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 16.sp,
+                                    )),
+                              ),
                             ],
                           ),
                         ),
